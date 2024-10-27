@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh; /* Full height */
+            background-color: #1a1a1a; /* Dark gray background */
+            color: #ff4d4d; /* Red text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center; /* Center text */
+        }
+        body.light {
+            background-color: #f9f9f9; /* Light background */
+            color: #333; /* Dark text */
+        }
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .nav-button {
+            background-color: #ff4d4d; /* Red button */
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s; /* Transition for hover effect */
+        }
+        .nav-button:hover {
+            background-color: #e63939; /* Slightly darker red on hover */
+        }
+        .theme-button {
+            margin: 10px;
+            padding: 10px 15px;
+            background-color: #ff4d4d; /* Red button */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Transition for hover effect */
+        }
+        .theme-button:hover {
+            background-color: #e63939; /* Slightly darker red on hover */
+        }
+    </style>
+    <script>
+        function checkCookie() {
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
+            if (!cookieValue) {
+                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+            }
+        }
+
+        function toggleTheme(theme) {
+            document.body.className = theme; // Set the body class for theme
+            document.cookie = `selectedStyle=${theme}; max-age=86400`; // Set cookie for 24 hours
+        }
+
+        window.onload = function() {
+            checkCookie();
+            const selectedStyle = getCookie('selectedStyle');
+            if (selectedStyle) {
+                document.body.className = selectedStyle; // Apply the style class
+            }
+        };
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+    </script>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="nav-button" onclick="location.href='settings.html'">Settings</button>
+        <button class="nav-button" onclick="location.href='apps.html'">Apps</button>
+        <button class="nav-button" onclick="location.href='games.html'">Games</button>
+        <button class="nav-button" onclick="location.href='menu.html'">Menu</button>
+    </div>
+
+    <h1>Settings</h1>
+    
+    <button class="theme-button" onclick="toggleTheme('')">Dark Theme</button>
+    <button class="theme-button" onclick="toggleTheme('light')">Light Theme</button>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #1a1a1a;
+            color: #ff4d4d;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .options {
+            position: absolute;
+            top: 20px;
+            right: 20px; /* Positioning on the right */
+        }
+        .settings {
+            position: absolute;
+            top: 20px;
+            left: 20px; /* Positioning on the left */
+        }
+        .button {
+            background-color: #ff4d4d; /* Red button */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px; /* Space between buttons */
+            transition: background-color 0.3s; /* Transition for hover effect */
+            text-decoration: none; /* Remove underline for links */
+        }
+        .button:hover {
+            background-color: #e63939; /* Slightly darker red on hover */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        if (getCookie('validKey') !== 'true') {
+            window.location.href = "index.html";
+        }
+    </script>
+
+    <div class="settings">
+        <a href="settings.html" class="button">Settings</a> <!-- Link to settings page -->
+    </div>
+
+    <div class="options">
+        <a href="games.html" class="button">Games</a> <!-- Link to games page -->
+        <a href="proxies.html" class="button">Proxies</a> <!-- Link to proxies page (create this page) -->
+        <a href="apps.html" class="button">Apps</a> <!-- Link to apps page (create this page) -->
+        <a href="#logout" class="button" onclick="logout()">Logout</a>
+    </div>
+
+    <h1>Welcome to the Menu!</h1>
+    <p>Select an option from the top corners.</p>
+
+    <script>
+        function logout() {
+            document.cookie = "validKey=; max-age=0; path=/"; 
+            window.location.href = "index.html"; 
+        }
+    </script>
+</body>
+</html>

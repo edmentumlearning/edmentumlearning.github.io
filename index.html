@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key System</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh; /* Full height */
+            background-color: #1a1a1a; /* Dark gray background */
+            color: #ff4d4d; /* Red text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center; /* Center text */
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ff4d4d; /* Red border */
+            border-radius: 5px;
+            background-color: #2a2a2a; /* Darker background for input */
+            color: #ff4d4d; /* Red text for input */
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #ff4d4d; /* Red button */
+            border: none;
+            border-radius: 5px;
+            color: white; /* White text on button */
+            cursor: pointer;
+            transition: background-color 0.3s; /* Transition for hover effect */
+        }
+        button:hover {
+            background-color: #e63939; /* Slightly darker red on hover */
+        }
+        p {
+            margin-top: 10px;
+        }
+        /* Cookie consent styles */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #2a2a2a;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            display: none; /* Initially hidden */
+            z-index: 1000;
+        }
+        .cookie-consent button {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Key System</h1>
+    <label for="keyInput">Enter your key:</label>
+    <input type="text" id="keyInput" placeholder="Enter key">
+    <button id="checkKey">Check Key</button>
+    <p id="result"></p>
+
+    <div class="cookie-consent" id="cookieConsent">
+        <strong>We use cookies!</strong><br>
+        You have no choice but to accept, so like just do it.
+        <button onclick="acceptCookies()">Accept</button>
+        <button onclick="acceptCookies()">Accept</button>
+    </div>
+
+    <script>
+        // Check if the cookie consent has already been accepted
+        function checkCookieConsent() {
+            const consent = getCookie('cookieConsent');
+            if (!consent) {
+                document.getElementById('cookieConsent').style.display = 'block'; // Show consent message
+            }
+        }
+
+        function acceptCookies() {
+            document.cookie = "cookieConsent=true; path=/"; // Set cookie consent
+            document.getElementById('cookieConsent').style.display = 'none'; // Hide consent message
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        // Predefined keys
+        const keys = {
+            'amF5ZGVucHVsbHVw': 'key1', 
+            'c29tZW1vcmVrdGlraW5n': 'key2', 
+            'aGVsbG9Xb3JsZA==': 'key3',  
+        };
+
+        document.getElementById('checkKey').addEventListener('click', function() {
+            const inputKey = document.getElementById('keyInput').value.trim(); // Trim whitespace
+            const resultElement = document.getElementById('result');
+
+            if (keys[inputKey]) {
+                resultElement.textContent = "Key is valid! Redirecting...";
+                resultElement.style.color = "green";
+
+                document.cookie = "validKey=true; max-age=3600; path=/";
+
+                setTimeout(() => {
+                    window.location.href = "menu.html"; // Redirect to games page
+                }, 2000); // Redirect after 2 seconds
+            } else {
+                resultElement.textContent = "Invalid key. Please try again.";
+                resultElement.style.color = "red";
+            }
+        });
+
+        // Check for cookie consent on page load
+        window.onload = checkCookieConsent;
+    </script>
+</body>
+</html>

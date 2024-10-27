@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxies</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            background-color: #1a1a1a;
+            color: #ff4d4d;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .nav-button {
+            background-color: #ff4d4d;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .nav-button:hover {
+            background-color: #e63939;
+        }
+        h1 {
+            margin-top: 60px;
+        }
+        .proxy-list {
+            margin-top: 20px;
+            background: #fff;
+            color: #333;
+            border-radius: 5px;
+            padding: 15px;
+            width: 300px;
+            max-height: 300px; /* Limit height */
+            overflow-y: auto; /* Add scroll */
+        }
+        .proxy-item {
+            margin: 5px 0;
+            padding: 10px;
+            background: #ff4d4d;
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .proxy-item:hover {
+            background-color: #e63939;
+        }
+        .editor-button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .editor-button:hover {
+            background-color: #e63939;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="nav-button" onclick="location.href='settings.html'">Settings</button>
+        <button class="nav-button" onclick="location.href='apps.html'">Apps</button>
+        <button class="nav-button" onclick="location.href='games.html'">Games</button>
+        <button class="nav-button" onclick="location.href='menu.html'">Menu</button>
+    </div>
+
+    <h1>Proxies</h1>
+
+    <div class="proxy-list">
+        <div class="proxy-item" onclick="openProxyPage('http://34.81.72.31:80')">HTTP Proxy to Google</div>
+        <div class="proxy-item" onclick="openProxyPage('http://156.228.108.63:3128')">HTTP Proxy</div>
+        <!-- Add more proxies as needed -->
+    </div>
+
+    <button class="editor-button" onclick="location.href='html_editor.html'">HTML Editor</button>
+
+    <script>
+        function openProxyPage(proxyUrl) {
+            location.href = `proxy_page.html?proxy=${encodeURIComponent(proxyUrl)}`;
+        }
+    </script>
+</body>
+</html>
