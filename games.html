@@ -3,23 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games Page</title>
+    <title>Games</title>
     <style>
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            height: 100vh; /* Full height */
-            background-color: #1a1a1a; /* Dark gray background */
-            color: #ff4d4d; /* Red text */
+            height: 100vh;
+            background-color: #1a1a1a;
+            color: #ff4d4d;
             font-family: Arial, sans-serif;
             margin: 0;
-            text-align: center; /* Center text */
-        }
-        body.light {
-            background-color: #f9f9f9; /* Light background */
-            color: #333; /* Dark text */
+            text-align: center;
         }
         .nav-buttons {
             position: absolute;
@@ -27,7 +23,7 @@
             right: 10px;
         }
         .nav-button {
-            background-color: #ff4d4d; /* Red button */
+            background-color: #ff4d4d;
             border: none;
             color: white;
             cursor: pointer;
@@ -35,126 +31,41 @@
             margin-left: 10px;
             padding: 10px;
             border-radius: 5px;
-            transition: background-color 0.3s; /* Transition for hover effect */
+            transition: background-color 0.3s;
         }
         .nav-button:hover {
-            background-color: #e63939; /* Slightly darker red on hover */
-        }
-        .warning {
-            background: #ffcc00;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        .game-list {
-            display: flex;
-            flex-wrap: wrap; /* Allow wrapping to create columns */
-            justify-content: center; /* Center the columns */
-            max-width: 600px; /* Limit width */
+            background-color: #e63939;
         }
         .game-button {
-            margin: 10px; /* Space between buttons */
-            padding: 10px 15px;
-            background-color: #ff4d4d; /* Red button */
+            background-color: #ff4d4d;
             border: none;
-            border-radius: 5px;
             color: white;
             cursor: pointer;
-            transition: background-color 0.3s; /* Transition for hover effect */
-            flex: 1 0 100px; /* Make buttons responsive with a minimum width */
-            text-align: center; /* Center text within the button */
+            font-size: 18px;
+            margin: 10px;
+            padding: 15px 30px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
         .game-button:hover {
-            background-color: #e63939; /* Slightly darker red on hover */
+            background-color: #e63939;
         }
     </style>
-    <script>
-        function checkCookie() {
-            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
-            if (!cookieValue) {
-                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
-            }
-        }
-
-        window.onload = function() {
-            checkCookie();
-            const selectedStyle = getCookie('selectedStyle');
-            if (selectedStyle) {
-                document.body.className = selectedStyle; // Apply the style class
-            }
-
-            // Load games dynamically
-            const games = [
-                { name: 'Alien Attack', file: 'alien-attack.htm' },
-                { name: 'Block Paint', file: 'block-paint.htm' },
-                { name: 'Braindom', file: 'braindom.htm' },
-                { name: 'Cowboy Swing', file: 'cowboy-swing.htm' },
-                { name: 'Cube Match', file: 'cube-match.htm' },
-                { name: 'Cut the Rope', file: 'cut-the-rope.htm' },
-                { name: 'Defly.io', file: 'defly.io.htm' },
-                { name: 'Fashion Battle', file: 'fashion-battle.htm' },
-                { name: 'Fruit Party', file: 'fruit-party.htm' },
-                { name: 'Garden Bloom', file: 'garden-bloom.htm' },
-                { name: 'Go Around', file: 'go-around.htm' },
-                { name: 'Green Ball', file: 'green-ball.htm' },
-                { name: 'Guess Their Answer', file: 'guess-their-answer.htm' },
-                { name: 'Lawn Mower', file: 'lawn-mower.htm' },
-                { name: 'Neon Rider', file: 'neon-rider.htm' },
-                { name: 'Om Nom Run', file: 'om-nom-run.htm' },
-                { name: 'Pair Up 3D', file: 'pair-up-3d.htm' },
-                { name: 'Parking Jam', file: 'parking-jam.htm' },
-                { name: 'Peet Sneak', file: 'peet-sneak.htm' },
-                { name: 'Rising Squares', file: 'rising-squares.htm' },
-                { name: 'Sort It', file: 'sort-it.htm' },
-                { name: 'Speed Master', file: 'speed-master.htm' },
-                { name: 'Thief Puzzle', file: 'thief-puzzle.htm' },
-                { name: 'Toilet Run', file: 'toilet-run.htm' },
-                { name: 'Tower Fall', file: 'tower-fall.htm' },
-                { name: 'Twisty Lines', file: 'twisty-lines.htm' },
-                { name: 'Retro Bowl', file: 'retrobowl.html' }, // New game
-                { name: 'Minecraft', file: 'Minecraft.htm' }, // New game
-                { name: 'YoHoHo.io', file: 'YoHoHo.io.htm' }, // New game
-                { name: 'Snow Rider 3D', file: 'snow-rider-3d.htm' }, // New game
-                { name: 'Slope', file: 'slope.html' } // New game
-            ];
-
-            const gameListElement = document.getElementById('game-list');
-
-            games.forEach(game => {
-                const button = document.createElement('button');
-                button.className = 'game-button';
-                button.textContent = game.name;
-                button.onclick = () => {
-                    location.href = `game_page.html?game=${game.name.replace(/ /g, '-')}`;
-                };
-                gameListElement.appendChild(button);
-            });
-        };
-
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
-    </script>
 </head>
 <body>
     <div class="nav-buttons">
         <button class="nav-button" onclick="location.href='settings.html'">Settings</button>
         <button class="nav-button" onclick="location.href='apps.html'">Apps</button>
-        <button class="nav-button" onclick="location.href='proxies.html'">Proxies</button>
         <button class="nav-button" onclick="location.href='menu.html'">Menu</button>
     </div>
-
-    <h1>Welcome to the Games Page!</h1>
     
-    <div class="warning" id="warning">
-        ⚠️ Warning: this is lowkey not a games website but a proxy website, if you find a game that doesn't work then you can just go on a proxy and find it somewhere else since proxies unblock everything, although still give me suggestions on what games to add
-        <button class="close-btn" onclick="document.getElementById('warning').style.display='none'">✖</button>
-    </div>
-
-    <div class="game-list" id="game-list">
-        <h2>Available Games</h2>
+    <h1>Games</h1>
+    
+    <div>
+        <button class="game-button" onclick="location.href='game_page.html?game=SnowRider 3D'">SnowRider 3D</button>
+        <button class="game-button" onclick="location.href='game_page.html?game=House of Hazards'">House of Hazards</button>
+        <button class="game-button" onclick="location.href='game_page.html?game=Slope'">Slope</button>
+        <button class="game-button" onclick="location.href='game_page.html?game=Retrobowl'">Retrobowl</button>
     </div>
 </body>
 </html>
