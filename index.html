@@ -73,6 +73,14 @@
     </div>
 
     <script>
+        // Check for validKey cookie on page load
+        function checkValidKey() {
+            const validKey = getCookie('validKey');
+            if (validKey) {
+                window.location.href = 'menu.html'; // Redirect to menu if valid key exists
+            }
+        }
+
         // Check if the cookie consent has already been accepted
         function checkCookieConsent() {
             const consent = getCookie('cookieConsent');
@@ -118,8 +126,11 @@
             }
         });
 
-        // Check for cookie consent on page load
-        window.onload = checkCookieConsent;
+        // Check for valid key and cookie consent on page load
+        window.onload = function() {
+            checkValidKey();
+            checkCookieConsent();
+        };
     </script>
 </body>
 </html>
