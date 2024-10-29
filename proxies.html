@@ -11,11 +11,19 @@
             align-items: center;
             justify-content: flex-start;
             height: 100vh;
-            background-color: #1a1a1a;
-            color: #ff4d4d;
+            background-color: #1a1a1a; /* Default background */
+            color: #ff4d4d; /* Default text color */
             font-family: Arial, sans-serif;
             margin: 0;
             text-align: center;
+        }
+        body.light {
+            background-color: #f9f9f9; /* Light background */
+            color: #333; /* Dark text */
+        }
+        body.chromakopia {
+            background-color: #00843d; /* Chromakopia background */
+            color: #FFFFFF; /* Chromakopia text color */
         }
         .nav-buttons {
             position: absolute;
@@ -23,7 +31,7 @@
             right: 10px;
         }
         .nav-button {
-            background-color: #ff4d4d;
+            background-color: #ff4d4d; /* Default button color */
             border: none;
             color: white;
             cursor: pointer;
@@ -34,37 +42,54 @@
             transition: background-color 0.3s;
         }
         .nav-button:hover {
-            background-color: #e63939;
+            background-color: #e63939; /* Hover color */
         }
-        h1 {
-            margin-top: 60px;
+        body.light .nav-button {
+            background-color: #333; /* Dark button for light theme */
+            color: white; /* White text for light button */
+        }
+        body.chromakopia .nav-button {
+            background-color: #000000; /* Black button for Chromakopia theme */
+            color: #FFFFFF; /* White text for buttons */
         }
         .proxy-list {
             margin-top: 20px;
             background: #fff;
-            color: #333;
+            color: #333; /* Dark text for light mode */
             border-radius: 5px;
             padding: 15px;
             width: 300px;
             max-height: 300px; /* Limit height */
             overflow-y: auto; /* Add scroll */
+            border: 2px solid #555; /* Gray border for dark theme */
+        }
+        body.light .proxy-list {
+            border: 2px solid #ccc; /* Light gray border for light theme */
         }
         .proxy-item {
             margin: 5px 0;
             padding: 10px;
-            background: #ff4d4d;
-            color: white;
             border-radius: 3px;
             cursor: pointer;
             transition: background-color 0.3s;
+            background-color: #ff4d4d; /* Default red background */
+            color: white; /* White text for proxy items */
         }
         .proxy-item:hover {
-            background-color: #e63939;
+            background-color: #e63939; /* Hover color for proxy items */
+        }
+        body.light .proxy-item {
+            background: #333; /* Dark background for light mode */
+            color: white; /* White text for proxy items in light mode */
+        }
+        body.chromakopia .proxy-item {
+            background-color: #000000; /* Black background for Chromakopia theme */
+            color: #FFFFFF; /* White text for proxy items */
         }
         .editor-button {
             margin-top: 20px;
             padding: 10px;
-            background-color: #ff4d4d;
+            background-color: #ff4d4d; /* Default editor button color */
             color: white;
             border: none;
             border-radius: 5px;
@@ -72,7 +97,15 @@
             transition: background-color 0.3s;
         }
         .editor-button:hover {
-            background-color: #e63939;
+            background-color: #e63939; /* Hover color for editor button */
+        }
+        body.light .editor-button {
+            background-color: #333; /* Dark background for light mode */
+            color: white; /* White text for editor button in light mode */
+        }
+        body.chromakopia .editor-button {
+            background-color: #000000; /* Black background for Chromakopia */
+            color: #FFFFFF; /* White text for editor button */
         }
     </style>
 </head>
@@ -95,7 +128,6 @@
     <button class="editor-button" onclick="location.href='html_editor.html'">HTML Editor</button>
 
     <script>
-        // Check for validKey cookie on page load
         function checkValidKey() {
             const validKey = getCookie('validKey');
             if (!validKey) {
@@ -113,8 +145,17 @@
             location.href = `proxy_page.html?proxy=${encodeURIComponent(proxyUrl)}`;
         }
 
-        // Call the checkValidKey function on page load
-        window.onload = checkValidKey;
+        function applyTheme() {
+            const selectedStyle = getCookie('selectedStyle');
+            if (selectedStyle) {
+                document.body.className = selectedStyle; // Apply the style class
+            }
+        }
+
+        window.onload = function() {
+            checkValidKey();
+            applyTheme(); // Apply theme on page load
+        };
     </script>
 </body>
 </html>
