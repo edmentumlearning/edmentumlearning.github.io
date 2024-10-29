@@ -21,6 +21,10 @@
             background-color: #f9f9f9; /* Light background */
             color: #333; /* Dark text */
         }
+        body.chromakopia {
+            background-color: #00843d; /* Chromakopia background */
+            color: #FFFFFF; /* Chromakopia text color */
+        }
         .nav-buttons {
             position: absolute;
             top: 10px;
@@ -76,25 +80,30 @@
             }
         }
 
-        window.onload = function() {
-            checkCookie();
-            const selectedStyle = getCookie('selectedStyle');
-            if (selectedStyle) {
-                document.body.className = selectedStyle; // Apply the style class
-            }
-
-            // Load the game based on the query parameter
-            const params = new URLSearchParams(window.location.search);
-            const game = params.get('game').replace(/ /g, '-'); // Replace spaces with hyphens
-            const iframe = document.getElementById('game-iframe');
-            iframe.src = `games/${game}.htm`; // Set the iframe source to the game file
-        };
-
         function getCookie(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
+
+        function applyTheme() {
+            const selectedStyle = getCookie('selectedStyle');
+            if (selectedStyle) {
+                document.body.className = selectedStyle; // Apply the style class
+            }
+        }
+
+        window.onload = function() {
+            checkCookie();
+            applyTheme(); // Apply theme on page load
+
+            // Load the game based on the query parameters
+            const params = new URLSearchParams(window.location.search);
+            const game = params.get('game').replace(/ /g, '-'); // Replace spaces with hyphens
+            const folder = params.get('folder'); // Get the folder name
+            const iframe = document.getElementById('game-iframe');
+            iframe.src = `games/${folder}/${game}.html`; // Set the iframe source to the game file
+        };
 
         function toggleFullScreen() {
             const elem = document.getElementById('game-container');
@@ -115,14 +124,14 @@
         <button class="nav-button" onclick="location.href='settings.html'">Settings</button>
         <button class="nav-button" onclick="location.href='apps.html'">Apps</button>
         <button class="nav-button" onclick="location.href='games.html'">Games</button>
-        <button class="nav-button" onclick="location.href='menu.html'">Menu</button> <!-- Menu button added -->
+        <button class="nav-button" onclick="location.href='menu.html'">Menu</button>
     </div>
     
     <h1>Game Page</h1>
     
     <div class="game-container" id="game-container">
         <button class="fullscreen-button" onclick="toggleFullScreen()">Fullscreen</button>
-        <iframe id="game-iframe" src="" title="Game"></iframe>
+        <iframe id="game-iframe" src="" title="sigma game"></iframe>
     </div>
 </body>
 </html>
