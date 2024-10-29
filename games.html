@@ -11,19 +11,27 @@
             align-items: center;
             justify-content: flex-start;
             height: 100vh;
-            background-color: #1a1a1a;
-            color: #ff4d4d;
+            background-color: #1a1a1a; /* Default background */
+            color: #ff4d4d; /* Default text color */
             font-family: Arial, sans-serif;
             margin: 0;
             text-align: center;
+        }
+        body.light {
+            background-color: #f9f9f9; /* Light background */
+            color: #333; /* Dark text */
+        }
+        body.chromakopia {
+            background-color: #00843d; /* Chromakopia background */
+            color: #FFFFFF; /* Chromakopia text color */
         }
         .nav-buttons {
             position: absolute;
             top: 10px;
             right: 10px;
         }
-        .nav-button {
-            background-color: #ff4d4d;
+        .nav-button, .game-button {
+            background-color: #ff4d4d; /* Default button color */
             border: none;
             color: white;
             cursor: pointer;
@@ -33,39 +41,58 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
-        .nav-button:hover {
-            background-color: #e63939;
+        .nav-button:hover, .game-button:hover {
+            background-color: #e63939; /* Hover color */
         }
-        .game-button {
-            background-color: #ff4d4d;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            margin: 10px;
-            padding: 15px 30px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+        body.light .nav-button, body.light .game-button {
+            background-color: #333; /* Dark button color for light theme */
         }
-        .game-button:hover {
-            background-color: #e63939;
+        body.chromakopia .nav-button, body.chromakopia .game-button {
+            background-color: #000000; /* Black button for Chromakopia */
+            color: #FFFFFF; /* White text for Chromakopia buttons */
         }
     </style>
+    <script>
+        function checkCookie() {
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
+            if (!cookieValue) {
+                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+            }
+        }
+        
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function applyTheme() {
+            const selectedStyle = getCookie('selectedStyle');
+            if (selectedStyle) {
+                document.body.className = selectedStyle; // Apply the style class
+            }
+        }
+
+        window.onload = function() {
+            checkCookie();
+            applyTheme(); // Apply theme on page load
+        };
+    </script>
 </head>
 <body>
     <div class="nav-buttons">
         <button class="nav-button" onclick="location.href='settings.html'">Settings</button>
         <button class="nav-button" onclick="location.href='apps.html'">Apps</button>
         <button class="nav-button" onclick="location.href='menu.html'">Menu</button>
+        <button class="nav-button" onclick="location.href='proxies.html'">Proxies</button>
     </div>
     
-    <h1>Games</h1>
+    <h1>really cool games that you should totally play and stuff</h1>
     
     <div>
-        <button class="game-button" onclick="location.href='game_page.html?game=SnowRider-3d'">SnowRider 3D</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=House-Of-Hazards'">House of Hazards</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=slope'">Slope</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=retrobowl'">Retrobowl</button>
+        <button class="game-button" onclick="location.href='game_page.html?game=slope&folder=slope'">Slope</button>
+        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=minesweeper'">Minesweeper</button>
+        <button class="game-button" onclick="location.href='game_page.html?game=wbwwb&folder=wbwwb'">We Become What We Behold</button>
     </div>
 </body>
 </html>
