@@ -11,73 +11,84 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #1a1a1a;
-            color: #ff4d4d;
+            background-color: #1a1a1a; /* Default background */
+            color: #ff4d4d; /* Default text color */
             font-family: Arial, sans-serif;
             margin: 0;
             text-align: center;
         }
-        h1 {
-            margin-bottom: 20px;
+        body.light {
+            background-color: #f9f9f9; /* Light background */
+            color: #333; /* Dark text */
         }
-        .options {
+        body.chromakopia {
+            background-color: #00843d; /* Chromakopia background */
+            color: #FFFFFF; /* Chromakopia text color */
+        }
+        .nav-buttons {
             position: absolute;
-            top: 20px;
-            right: 20px; /* Positioning on the right */
+            top: 10px;
+            right: 10px;
         }
-        .settings {
-            position: absolute;
-            top: 20px;
-            left: 20px; /* Positioning on the left */
-        }
-        .button {
-            background-color: #ff4d4d; /* Red button */
-            color: white;
-            padding: 10px 15px;
+        .nav-button {
+            background-color: #ff4d4d; /* Default button color */
             border: none;
-            border-radius: 5px;
+            color: white;
             cursor: pointer;
-            margin: 5px; /* Space between buttons */
-            transition: background-color 0.3s; /* Transition for hover effect */
-            text-decoration: none; /* Remove underline for links */
+            font-size: 16px;
+            margin-left: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
-        .button:hover {
-            background-color: #e63939; /* Slightly darker red on hover */
+        .nav-button:hover {
+            background-color: #e63939; /* Hover color */
+        }
+        body.light .nav-button {
+            background-color: #333; /* Dark button for light theme */
+        }
+        body.chromakopia .nav-button {
+            background-color: #000000; /* Black button for Chromakopia */
+            color: #FFFFFF; /* White text for Chromakopia buttons */
         }
     </style>
-</head>
-<body>
     <script>
+        function checkCookie() {
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
+            if (!cookieValue) {
+                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+            }
+        }
+
         function getCookie(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
 
-        if (getCookie('validKey') !== 'true') {
-            window.location.href = "index.html";
+        function applyTheme() {
+            const selectedStyle = getCookie('selectedStyle');
+            if (selectedStyle) {
+                document.body.className = selectedStyle; // Apply the style class
+            }
         }
-    </script>
 
-    <div class="settings">
-        <a href="settings.html" class="button">Settings</a> <!-- Link to settings page -->
+        window.onload = function() {
+            checkCookie();
+            applyTheme(); // Apply theme on page load
+        };
+    </script>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="nav-button" onclick="location.href='settings.html'">Settings</button>
+        <button class="nav-button" onclick="location.href='apps.html'">Apps</button>
+        <button class="nav-button" onclick="location.href='games.html'">Games</button>
+        <button class="nav-button" onclick="location.href='proxies.html'">Proxies</button>
     </div>
 
-    <div class="options">
-        <a href="games.html" class="button">Games</a> <!-- Link to games page -->
-        <a href="proxies.html" class="button">Proxies</a> <!-- Link to proxies page (create this page) -->
-        <a href="apps.html" class="button">Apps</a> <!-- Link to apps page (create this page) -->
-        <a href="#logout" class="button" onclick="logout()">Logout</a>
-    </div>
-
-    <h1>Welcome to the Menu!</h1>
-    <p>Select an option from the top corners.</p>
-
-    <script>
-        function logout() {
-            document.cookie = "validKey=; max-age=0; path=/"; 
-            window.location.href = "index.html"; 
-        }
-    </script>
+    <h1>super sigma menu page</h1>
+    <p>welcome to the most sigma place ever!</p>
+    <!-- Add additional menu options as needed -->
 </body>
 </html>
