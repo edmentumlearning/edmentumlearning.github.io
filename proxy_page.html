@@ -18,12 +18,12 @@
             text-align: center; 
         }
         body.light {
-            background-color: #f9f9f9; /* Light background */
-            color: #333; /* Dark text */
+            background-color: #f9f9f9; 
+            color: #333; 
         }
         body.chromakopia {
-            background-color: #00843d; /* Chromakopia background */
-            color: #FFFFFF; /* Chromakopia text color */
+            background-color: #00843d; 
+            color: #FFFFFF; 
         }
         .nav-buttons {
             position: absolute;
@@ -89,16 +89,18 @@
         function applyTheme() {
             const selectedStyle = getCookie('selectedStyle');
             if (selectedStyle) {
-                document.body.className = selectedStyle; // Apply the style class
+                document.body.className = selectedStyle; 
             }
         }
 
         window.onload = function() {
             checkCookie();
-            applyTheme(); // Apply theme on page load
+            applyTheme(); 
 
             const params = new URLSearchParams(window.location.search);
-            const proxyUrl = params.get('proxy');
+            const folderName = params.get('folder') || 'proxies'; // Default folder
+            const fileName = params.get('file') || 'index.html'; // Default file
+            const proxyUrl = `proxies/${folderName}/${fileName}`;
             const iframe = document.getElementById('proxy-iframe');
             iframe.src = proxyUrl; 
         };
