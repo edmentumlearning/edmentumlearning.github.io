@@ -44,14 +44,6 @@
         .nav-button:hover {
             background-color: #e63939; /* Hover color */
         }
-        body.light .nav-button {
-            background-color: #333; /* Dark button for light theme */
-            color: white; /* White text for light button */
-        }
-        body.chromakopia .nav-button {
-            background-color: #000000; /* Black button for Chromakopia theme */
-            color: #FFFFFF; /* White text for buttons */
-        }
         .proxy-list {
             margin-top: 20px;
             background: transparent; /* Set background to transparent */
@@ -120,7 +112,8 @@
     <h1>Proxies</h1>
 
     <div class="proxy-list">
-        <div class="proxy-item" onclick="openProxyPage('static', 'index.html')">Ultraviolet</div>
+        <div class="proxy-item" onclick="openProxyPage('https://d1crashout.pii.at/')">Rammerhead</div>
+        <div class="proxy-item" onclick="openProxyPage('https://termoxyfake.vercel.app/')">Sigma Unblocker</div>
     </div>
 
     <button class="editor-button" onclick="location.href='html_editor.html'">HTML Editor</button>
@@ -139,8 +132,8 @@
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
 
-        function openProxyPage(folderName, fileName) {
-            location.href = `proxy_page.html?folder=${encodeURIComponent(folderName)}&file=${encodeURIComponent(fileName)}`;
+        function openProxyPage(url) {
+            location.href = `proxy_page.html?url=${encodeURIComponent(url)}`; // Open the proxy URL in the iframe
         }
 
         function applyTheme() {
