@@ -98,9 +98,7 @@
             applyTheme(); 
 
             const params = new URLSearchParams(window.location.search);
-            const folderName = params.get('folder') || 'ultraviolet'; // Default to 'ultraviolet'
-            const fileName = params.get('file') || 'index.html'; // Default file
-            const proxyUrl = `proxies/${folderName}/${fileName}`; // Ensure the correct path
+            const proxyUrl = params.get('url') || 'https://example.com'; // Default to an example URL
             const iframe = document.getElementById('proxy-iframe');
             iframe.src = proxyUrl; 
         };
