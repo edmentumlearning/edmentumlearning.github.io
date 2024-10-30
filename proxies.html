@@ -54,7 +54,7 @@
         }
         .proxy-list {
             margin-top: 20px;
-            background: #fff;
+            background: transparent; /* Set background to transparent */
             color: #333; /* Dark text for light mode */
             border-radius: 5px;
             padding: 15px;
@@ -120,9 +120,7 @@
     <h1>Proxies</h1>
 
     <div class="proxy-list">
-        <div class="proxy-item" onclick="openProxyPage('http://34.81.72.31:80')">HTTP Proxy to Google</div>
-        <div class="proxy-item" onclick="openProxyPage('http://156.228.108.63:3128')">HTTP Proxy</div>
-        <!-- Add more proxies as needed -->
+        <div class="proxy-item" onclick="openProxyPage('Ultraviolet', 'index.html')">Ultraviolet</div>
     </div>
 
     <button class="editor-button" onclick="location.href='html_editor.html'">HTML Editor</button>
@@ -141,8 +139,8 @@
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
 
-        function openProxyPage(proxyUrl) {
-            location.href = `proxy_page.html?proxy=${encodeURIComponent(proxyUrl)}`;
+        function openProxyPage(folderName, fileName) {
+            location.href = `proxy_page.html?folder=${encodeURIComponent(folderName)}&file=${encodeURIComponent(fileName)}`;
         }
 
         function applyTheme() {
