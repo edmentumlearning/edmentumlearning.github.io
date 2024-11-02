@@ -73,6 +73,13 @@
     </div>
 
     <script>
+        // Prevent context menu
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+        });
+
         // Check for validKey cookie on page load
         function checkValidKey() {
             const validKey = getCookie('validKey');
@@ -105,12 +112,28 @@
             'amF5ZGVucHVsbHVw': 'key1', 
             'c29tZW1vcmVrdGlraW5n': 'key2', 
             'aGVsbG9Xb3JsZA==': 'key3',  
-            'freetrial123556': 'key4',
         };
 
+        const specialKey = '123556@a'; // Updated special bypass key
+        let incorrectAttempts = 0; // Track incorrect attempts
+        let lockout = false; // Lockout status
+
         document.getElementById('checkKey').addEventListener('click', function() {
-            const inputKey = document.getElementById('keyInput').value.trim(); // Trim whitespace
             const resultElement = document.getElementById('result');
+            const inputKey = document.getElementById('keyInput').value.trim(); // Trim whitespace
+
+            if (lockout) {
+                resultElement.textContent = "You are locked out. Please wait.";
+                return;
+            }
+
+            if (inputKey === specialKey) {
+                incorrectAttempts = 0; // Reset incorrect attempts
+                lockout = false; // Disable lockout
+                resultElement.textContent = "Lockout disabled. You can continue.";
+                resultElement.style.color = "blue"; // Change color to indicate success
+                return; // Exit the function
+            }
 
             if (keys[inputKey]) {
                 resultElement.textContent = "Key is valid! Redirecting...";
@@ -122,8 +145,24 @@
                     window.location.href = "menu.html"; // Redirect to games page
                 }, 2000); // Redirect after 2 seconds
             } else {
+                incorrectAttempts++;
                 resultElement.textContent = "Invalid key. Please try again.";
                 resultElement.style.color = "red";
+
+                // Set timeout based on incorrect attempts
+                if (incorrectAttempts >= 5) {
+                    lockout = true;
+                    resultElement.textContent = "Too many incorrect attempts. Please wait 3 minutes.";
+                    setTimeout(() => {
+                        lockout = false; // Reset lockout after 3 minutes
+                        incorrectAttempts = 0; // Reset attempts
+                        resultElement.textContent = ""; // Clear message
+                    }, 180000); // 3 minutes
+                } else {
+                    setTimeout(() => {
+                        resultElement.textContent = ""; // Clear message after 3 seconds
+                    }, 3000); // 3 seconds
+                }
             }
         });
 
