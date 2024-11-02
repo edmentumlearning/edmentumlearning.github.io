@@ -53,6 +53,13 @@
         }
     </style>
     <script>
+                        // so like no people can like uh view page source n stuff
+                        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+});
+        
         function checkCookie() {
             const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
             if (!cookieValue) {
