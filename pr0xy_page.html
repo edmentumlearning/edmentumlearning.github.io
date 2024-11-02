@@ -31,9 +31,7 @@
             right: 10px;
         }
         .nav-button {
-            background-color: #ff4d4d; 
             border: none;
-            color: white;
             cursor: pointer;
             font-size: 16px;
             margin-left: 10px;
@@ -41,8 +39,20 @@
             border-radius: 5px;
             transition: background-color 0.3s; 
         }
-        .nav-button:hover {
+        .nav-button.default {
+            background-color: #ff4d4d; 
+            color: white;
+        }
+        .nav-button.default:hover {
             background-color: #e63939; 
+        }
+        body.light .nav-button.default {
+            background-color: #333; 
+            color: white; 
+        }
+        body.chromakopia .nav-button.default {
+            background-color: #000000; 
+            color: #FFFFFF; 
         }
         .proxy-container {
             width: 80%; 
@@ -56,15 +66,23 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: #ff4d4d; 
             border: none;
             border-radius: 5px;
-            color: white;
             cursor: pointer;
             padding: 5px 10px;
+            background-color: #ff4d4d; 
+            color: white;
         }
         .fullscreen-button:hover {
             background-color: #e63939; 
+        }
+        body.light .fullscreen-button {
+            background-color: #333; 
+            color: white; 
+        }
+        body.chromakopia .fullscreen-button {
+            background-color: #000000; 
+            color: #FFFFFF; 
         }
         iframe {
             width: 100%;
@@ -119,10 +137,10 @@
 </head>
 <body>
     <div class="nav-buttons">
-        <button class="nav-button" onclick="location.href='settings.html'">Settings</button>
-        <button class="nav-button" onclick="location.href='apps.html'">Apps</button>
-        <button class="nav-button" onclick="location.href='games.html'">Games</button>
-        <button class="nav-button" onclick="location.href='menu.html'">Menu</button>
+        <button class="nav-button default" onclick="location.href='settings.html'">Settings</button>
+        <button class="nav-button default" onclick="location.href='apps.html'">Apps</button>
+        <button class="nav-button default" onclick="location.href='games.html'">Games</button>
+        <button class="nav-button default" onclick="location.href='menu.html'">Menu</button>
     </div>
     
     <h1>Proxy Page</h1>
