@@ -111,12 +111,13 @@
         }
     </style>
     <script>
-                        // so like no people can like uh view page source n stuff
-                        document.addEventListener('DOMContentLoaded', function() {
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-});
+        // Prevent context menu to disable "view source"
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+        });
+
         function checkCookie() {
             const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
             if (!cookieValue) {
@@ -138,7 +139,8 @@
         }
 
         function openProxyPage(url) {
-            location.href = `pr0xy_page.html?url=${encodeURIComponent(url)}`; // Open the proxy URL in the iframe
+            const encodedUrl = btoa(url); // Encode the URL
+            location.href = `pr0xy_page.html?url=${encodedUrl}`; // Open the proxy URL in the iframe
         }
 
         window.onload = function() {
@@ -158,10 +160,9 @@
     <h1>Proxies</h1>
 
     <div class="proxy-list">
-        <div class="proxy-item" onclick="openProxyPage('https://d1crashout.pii.at/')">rammerhead</div>
-        <div class="proxy-item" onclick="openProxyPage('https://termoxyfake.vercel.app/')">sigma unblocker</div>
-        <div class="proxy-item" onclick="openProxyPage('https://baroqueart.discovergeographics.com')">shuttle</div>
-        <div class="proxy-item" onclick="openProxyPage('https://school-is-wack.fr.to/')">shadow(dont click on ads)</div>
+        <div class="proxy-item" onclick="openProxyPage('https://d1crashout.pii.at/')">Rammerhead</div>
+        <div class="proxy-item" onclick="openProxyPage('https://termoxyfake.vercel.app/')">Sigma Unblocker</div>
+        <div class="proxy-item" onclick="openProxyPage('https://baroqueart.discovergeographics.com')">Shuttle</div>
     </div>
 
     <button class="editor-button" onclick="location.href='html_editor.html'">HTML Editor</button>
