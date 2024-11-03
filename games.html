@@ -53,12 +53,14 @@
         }
     </style>
     <script>
-                        // so like no people can like uh view page source n stuff
-                        document.addEventListener('DOMContentLoaded', function() {
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-});
+        function encodeUrl(url) {
+            return btoa(url); // Base64 encoding
+        }
+        
+        function navigateToGame(url) {
+            const encodedUrl = encodeUrl(url);
+            location.href = `game_pagewb.html?gameUrl=${encodedUrl}`;
+        }
         
         function checkCookie() {
             const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
@@ -102,52 +104,52 @@
         <button class="game-button" onclick="location.href='game_page.html?game=index&folder=2048'">2048</button>
         <button class="game-button" onclick="location.href='game_page.html?game=index&folder=asteroids'">asteroids</button>
         <button class="game-button" onclick="location.href='game_page.html?game=wbwwb&folder=wbwwb'">We Become What We Behold</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://ncase.me/anxiety'">anxiety</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://1l56df6.github.io/Snow-Rider3D-main/index.html'">snowrider 3d</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://shawn43.github.io/retrobowl-unlimited/'">retrobowl</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://neal.fun/password-game/'">the password game</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://meximath.github.io/infinitecraft.html'">bootleg infinite craft</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://neal.fun/spend/'">spend bill gates money</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://neal.fun/asteroid-launcher/'">asteroid launcher</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Dino/'">dinosaur game</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/SM64/'">super mario 64</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/FNAF1-main/'">FNAF 1</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Funkin-Html5-main/'">friday night funkin</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/UCN-HTML5-main/'">ultimate custom night</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Minecraft/'">minecraft</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Tetris/'">tetris</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Flash/bloonstd'">bloons td 2</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/FlappyBird/'">flappy bird</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/CrossyRoad/'">crossy road</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Snake/'">google snake</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/FireboyWatergirl/'">fire boy and water girl</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Flash/pizzeria'">papas pizzeria</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Subway/'">subway surfers</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Quake/'">quake 1</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Pacman/'">pac man</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Flash/tboi'">the binding of issac</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Flash/RaftWars'">raft wars</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/FruitNinja'">fruit ninja</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://cherry-charm.vercel.app/'">fruit gambling</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/BlackJack/'">blackjack</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/CutTheRope/'">cut the rope</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Flash/AgeOfWar'">age of war</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Flash/StickRPG'">stickrpg</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/RooftopSnipers'">rooftop snipers</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/StickyNinja'">sticky ninja</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/BobTheRobber2'">bob the robber2</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/1v1LOL'">1v1.lol</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/JetpackJoyride/'">jetpack joyride</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/FruitNinja/'">fruit ninja</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/TempleRun2/'">temple run 2</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/FactoryBalls/'">factory balls</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Flash/GunMayhem2'">gun mayhem 2</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Solitaire/'">solitare</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Freezeria'">papas freezeria</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://funschoolmath.github.io/Emulator/'">emulator</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://datseagull.github.io/newgames/houseofhazards/index.html'">house of hazards</button>
-        <button class="game-button" onclick="location.href='game_pagewb.html?gameUrl=https://oasis.decart.ai/'">minecraft schizo edition</button>
-    
+        <button class="game-button" onclick="navigateToGame('https://ncase.me/anxiety')">anxiety</button>
+        <button class="game-button" onclick="navigateToGame('https://1l56df6.github.io/Snow-Rider3D-main/index.html')">snowrider 3d</button>
+        <button class="game-button" onclick="navigateToGame('https://shawn43.github.io/retrobowl-unlimited/')">retrobowl</button>
+        <button class="game-button" onclick="navigateToGame('https://neal.fun/password-game/')">the password game</button>
+        <button class="game-button" onclick="navigateToGame('https://meximath.github.io/infinitecraft.html')">bootleg infinite craft</button>
+        <button class="game-button" onclick="navigateToGame('https://neal.fun/spend/')">spend bill gates money</button>
+        <button class="game-button" onclick="navigateToGame('https://neal.fun/asteroid-launcher/')">asteroid launcher</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Dino/')">dinosaur game</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/SM64/')">super mario 64</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/FNAF1-main/')">FNAF 1</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Funkin-Html5-main/')">friday night funkin</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/UCN-HTML5-main/')">ultimate custom night</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Minecraft/')">minecraft</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Tetris/')">tetris</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Flash/bloonstd')">bloons td 2</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/FlappyBird/')">flappy bird</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/CrossyRoad/')">crossy road</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Snake/')">google snake</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/FireboyWatergirl/')">fire boy and water girl</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Flash/pizzeria')">papas pizzeria</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Subway/')">subway surfers</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Quake/')">quake 1</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Pacman/')">pac man</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Flash/tboi')">the binding of issac</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Flash/RaftWars')">raft wars</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/FruitNinja')">fruit ninja</button>
+        <button class="game-button" onclick="navigateToGame('https://cherry-charm.vercel.app/')">fruit gambling</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/BlackJack/')">blackjack</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/CutTheRope/')">cut the rope</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Flash/AgeOfWar')">age of war</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Flash/StickRPG')">stickrpg</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/RooftopSnipers')">rooftop snipers</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/StickyNinja')">sticky ninja</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/BobTheRobber2')">bob the robber2</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/1v1LOL')">1v1.lol</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/JetpackJoyride/')">jetpack joyride</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/FruitNinja/')">fruit ninja</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/TempleRun2/')">temple run 2</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/FactoryBalls/')">factory balls</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Flash/GunMayhem2')">gun mayhem 2</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Solitaire/')">solitare</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Freezeria')">papas freezeria</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Emulator/')">emulator</button>
+        <button class="game-button" onclick="navigateToGame('https://datseagull.github.io/newgames/houseofhazards/index.html')">house of hazards</button>
+        <button class="game-button" onclick="navigateToGame('https://oasis.decart.ai/')">minecraft schizo edition</button>
+
     </div>
 </body>
 </html>
