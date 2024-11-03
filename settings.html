@@ -53,6 +53,12 @@
         }
     </style>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+        });
+        
         function checkCookie() {
             const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
             if (!cookieValue) {
@@ -78,6 +84,17 @@
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
 
+        function openGame() {
+            var win = window.open();
+            var url = "https://sigmavro.github.io/menu.html";
+            var iframe = win.document.createElement('iframe');
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            iframe.src = url;
+            win.document.body.appendChild(iframe);
+        }
+
         window.onload = function() {
             checkCookie();
             applyTheme(); // Apply theme on page load
@@ -96,5 +113,6 @@
     <button class="theme-button" onclick="toggleTheme('')">Dark Theme</button>
     <button class="theme-button" onclick="toggleTheme('light')">Light Theme</button>
     <button class="theme-button" onclick="toggleTheme('chromakopia')">Chromakopia Theme</button>
+    <button class="theme-button" onclick="openGame()">About:blank Cloak(hides from go guardian)</button> <!-- Button for the cloaking -->
 </body>
 </html>
