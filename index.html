@@ -63,12 +63,12 @@
     <label for="keyInput">Enter your key:</label>
     <input type="text" id="keyInput" placeholder="Enter key">
     <button id="checkKey">Check Key</button>
+    
     <p id="result"></p>
 
     <div class="cookie-consent" id="cookieConsent">
         <strong>We use cookies!</strong><br>
         You have no choice but to accept, so like just do it.
-        <button onclick="acceptCookies()">Accept</button>
         <button onclick="acceptCookies()">Accept</button>
     </div>
 
@@ -107,12 +107,12 @@
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
 
-        // Predefined keys
+        // Predefined keys (Base64 encoded)
         const keys = {
-            'amF5ZGVucHVsbHVw': 'key1', 
-            'c29tZW1vcmVrdGlraW5n': 'key2', 
-            'aGVsbG9Xb3JsZA==': 'key3',
-            'cowboysaretrash': 'key4'
+            'Y293Ym95c2FyZXRyYXNo': 'key1', 
+            'YzJsbmJXRjJjbTg9': 'key2', 
+            'YUdWc2JHOVhiM0pzWkE9PQ==': 'key3',
+            'Y29vbGtleWZvcmFkcmlhbnNvaWRvbnRlbnRlcm90aGVybG9uZ3N0dWZmYnV0dGhpc2lzcHJldHR5bG9uZ3NvaWRrbGV0bWVhZGRteXNpZ25hdHVyZTEyMzU1NnNpZ21hYnJvYW5kc3R1ZmZpZw==': 'key4',  
         };
 
         const specialKey = '123556@a'; // Updated special bypass key
@@ -136,7 +136,9 @@
                 return; // Exit the function
             }
 
-            if (keys[inputKey]) {
+            // Decode input key from Base64
+            const decodedKey = btoa(inputKey); // Encode to Base64 to match keys
+            if (keys[decodedKey]) {
                 resultElement.textContent = "Key is valid! Redirecting...";
                 resultElement.style.color = "green";
 
