@@ -91,6 +91,12 @@
         }
     </style>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+        });
+
         function checkCookie() {
             const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
             if (!cookieValue) {
@@ -117,9 +123,11 @@
 
             // Load the game based on the query parameters
             const params = new URLSearchParams(window.location.search);
-            const gameUrl = params.get('gameUrl'); // Get the game URL
+            const encodedGameUrl = params.get('gameUrl'); // Get the encoded game URL
+            const gameUrl = atob(encodedGameUrl); // Decode the URL
+
             const iframe = document.getElementById('game-iframe');
-            iframe.src = gameUrl; // Set the iframe source to the web game URL
+            iframe.src = gameUrl; // Set the iframe source to the decoded web game URL
         };
 
         function toggleFullScreen() {
@@ -140,15 +148,15 @@
     <div class="nav-buttons">
         <button class="nav-button default" onclick="location.href='settings.html'">Settings</button>
         <button class="nav-button default" onclick="location.href='apps.html'">Apps</button>
-        <button class="nav-button default" onclick="location.href='games.html'">Games</button>
         <button class="nav-button default" onclick="location.href='menu.html'">Menu</button>
+        <button class="nav-button default" onclick="location.href='proxies.html'">Proxies</button>
     </div>
     
     <h1>Web Game</h1>
     
     <div class="game-container" id="game-container">
         <button class="fullscreen-button" onclick="toggleFullScreen()">Fullscreen</button>
-        <iframe id="game-iframe" src="" title="Web Game" ></iframe>
+        <iframe id="game-iframe" src="" title="Web Game"></iframe>
     </div>
 </body>
 </html>
