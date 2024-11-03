@@ -31,9 +31,7 @@
             right: 10px;
         }
         .nav-button {
-            background-color: #ff4d4d; /* Default button color */
             border: none;
-            color: white;
             cursor: pointer;
             font-size: 16px;
             margin-left: 10px;
@@ -41,8 +39,20 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
-        .nav-button:hover {
+        .nav-button.default {
+            background-color: #ff4d4d; /* Default button color */
+            color: white;
+        }
+        .nav-button.default:hover {
             background-color: #e63939; /* Hover color */
+        }
+        body.light .nav-button.default {
+            background-color: #333; /* Dark button for light theme */
+            color: white; /* White text for light theme */
+        }
+        body.chromakopia .nav-button.default {
+            background-color: #000000; /* Black button for Chromakopia */
+            color: #FFFFFF; /* White text for Chromakopia */
         }
         .proxy-list {
             margin-top: 20px;
@@ -100,29 +110,17 @@
             color: #FFFFFF; /* White text for editor button */
         }
     </style>
-</head>
-<body>
-    <div class="nav-buttons">
-        <button class="nav-button" onclick="location.href='settings.html'">Settings</button>
-        <button class="nav-button" onclick="location.href='apps.html'">Apps</button>
-        <button class="nav-button" onclick="location.href='games.html'">Games</button>
-        <button class="nav-button" onclick="location.href='menu.html'">Menu</button>
-    </div>
-
-    <h1>Proxies</h1>
-
-    <div class="proxy-list">
-        <div class="proxy-item" onclick="openProxyPage('https://d1crashout.pii.at/')">Rammerhead</div>
-        <div class="proxy-item" onclick="openProxyPage('https://termoxyfake.vercel.app/')">Sigma Unblocker</div>
-    </div>
-
-    <button class="editor-button" onclick="location.href='html_editor.html'">HTML Editor</button>
-
     <script>
-        function checkValidKey() {
-            const validKey = getCookie('validKey');
-            if (!validKey) {
-                window.location.href = 'index.html'; // Redirect to index if valid key does not exist
+                        // so like no people can like uh view page source n stuff
+                        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+});
+        function checkCookie() {
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
+            if (!cookieValue) {
+                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
             }
         }
 
@@ -132,10 +130,6 @@
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
 
-        function openProxyPage(url) {
-            location.href = `pr0xy_page.html?url=${encodeURIComponent(url)}`; // Open the proxy URL in the iframe
-        }
-
         function applyTheme() {
             const selectedStyle = getCookie('selectedStyle');
             if (selectedStyle) {
@@ -143,10 +137,32 @@
             }
         }
 
+        function openProxyPage(url) {
+            location.href = `pr0xy_page.html?url=${encodeURIComponent(url)}`; // Open the proxy URL in the iframe
+        }
+
         window.onload = function() {
-            checkValidKey();
+            checkCookie();
             applyTheme(); // Apply theme on page load
         };
     </script>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="nav-button default" onclick="location.href='settings.html'">Settings</button>
+        <button class="nav-button default" onclick="location.href='apps.html'">Apps</button>
+        <button class="nav-button default" onclick="location.href='games.html'">Games</button>
+        <button class="nav-button default" onclick="location.href='menu.html'">Menu</button>
+    </div>
+
+    <h1>Proxies</h1>
+
+    <div class="proxy-list">
+        <div class="proxy-item" onclick="openProxyPage('https://d1crashout.pii.at/')">Rammerhead</div>
+        <div class="proxy-item" onclick="openProxyPage('https://termoxyfake.vercel.app/')">Sigma Unblocker</div>
+        <div class="proxy-item" onclick="openProxyPage('https://philosophy.k12biography.com')">Shuttle</div>
+    </div>
+
+    <button class="editor-button" onclick="location.href='html_editor.html'">HTML Editor</button>
 </body>
 </html>
