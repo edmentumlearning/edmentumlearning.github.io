@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web App Page</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh; /* Full height */
+            background-color: #1a1a1a; /* Dark gray background */
+            color: #ff4d4d; /* Red text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center; /* Center text */
+        }
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .nav-button {
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #ff4d4d;
+            color: white;
+        }
+        .game-container {
+            width: 80%; /* Wider box */
+            height: 80%; /* Taller box */
+            border: 2px solid #ff4d4d; /* Red border */
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative; /* Position for fullscreen button */
+        }
+        .fullscreen-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #ff4d4d; /* Red button */
+            color: white;
+        }
+        .fullscreen-button:hover {
+            background-color: #e63939; /* Slightly darker red on hover */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* No border for the iframe */
+        }
+    </style>
+    <script>
+        function checkCookie() {
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
+            if (!cookieValue) {
+                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+            }
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function applyTheme() {
+            const selectedStyle = getCookie('selectedStyle');
+            if (selectedStyle) {
+                document.body.className = selectedStyle; // Apply the style class
+            }
+        }
+
+        window.onload = function() {
+            checkCookie();
+            applyTheme(); // Apply theme on page load
+
+            // Load the web app based on the query parameters
+            const params = new URLSearchParams(window.location.search);
+            const encodedUrl = params.get('url'); // Get the encoded URL
+            const appUrl = atob(encodedUrl); // Decode the URL
+
+            const iframe = document.getElementById('app-iframe');
+            iframe.src = appUrl; // Set the iframe source to the decoded web app URL
+        };
+
+        function toggleFullScreen() {
+            const elem = document.getElementById('game-container');
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) {
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="nav-button" onclick="location.href='settings.html'">Settings</button>
+        <button class="nav-button" onclick="location.href='apps.html'">Apps</button>
+        <button class="nav-button" onclick="location.href='menu.html'">Menu</button>
+        <button class="nav-button" onclick="location.href='proxies.html'">Proxies</button>
+    </div>
+
+    <h1>sigma app</h1>
+
+    <div class="game-container" id="game-container">
+        <button class="fullscreen-button" onclick="toggleFullScreen()">Fullscreen</button>
+        <iframe id="app-iframe" src="" title="Web App"></iframe>
+    </div>
+</body>
+</html>
