@@ -10,54 +10,61 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            height: 100vh; /* Full height */
+            height: 100vh;
             background-color: #1a1a1a; /* Dark gray background */
             color: #ff4d4d; /* Red text */
             font-family: Arial, sans-serif;
             margin: 0;
-            text-align: center; /* Center text */
+            text-align: center;
+        }
+        body.light {
+            background-color: #f9f9f9; /* Light background */
+            color: #333; /* Dark text */
+        }
+        body.chromakopia {
+            background-color: #00843d; /* Chromakopia background */
+            color: #FFFFFF; /* Chromakopia text color */
         }
         .nav-buttons {
             position: absolute;
             top: 10px;
             right: 10px;
+            display: flex; /* Use flex to align buttons */
+            gap: 10px; /* Space between buttons */
         }
-        .nav-button {
+        .nav-button, .app-button {
             border: none;
             cursor: pointer;
             font-size: 16px;
-            margin-left: 10px;
-            padding: 10px;
+            padding: 10px 15px; /* Slightly wider padding */
             border-radius: 5px;
-            background-color: #ff4d4d;
+            transition: background-color 0.3s, transform 0.2s; /* Added transform for hover effect */
+        }
+        .nav-button {
+            background-color: #ff4d4d; /* Default red */
             color: white;
         }
-        .game-container {
-            width: 80%; /* Wider box */
-            height: 80%; /* Taller box */
-            border: 2px solid #ff4d4d; /* Red border */
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative; /* Position for fullscreen button */
-        }
-        .fullscreen-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            padding: 5px 10px;
-            background-color: #ff4d4d; /* Red button */
+        .app-button {
+            background-color: #ff4d4d; /* Default red */
             color: white;
         }
-        .fullscreen-button:hover {
-            background-color: #e63939; /* Slightly darker red on hover */
+        .nav-button:hover, .app-button:hover {
+            background-color: #e63939; /* Darker red on hover */
+            transform: scale(1.05); /* Slightly enlarge button on hover */
         }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none; /* No border for the iframe */
+        body.light .nav-button, body.light .app-button {
+            background-color: #333; /* Dark button for light theme */
+            color: white; /* White text */
+        }
+        body.light .nav-button:hover, body.light .app-button:hover {
+            background-color: #555; /* Lighter dark on hover for light theme */
+        }
+        body.chromakopia .nav-button, body.chromakopia .app-button {
+            background-color: #000000; /* Black button for Chromakopia */
+            color: #FFFFFF; /* White text for Chromakopia buttons */
+        }
+        body.chromakopia .nav-button:hover, body.chromakopia .app-button:hover {
+            background-color: #333333; /* Dark gray on hover for Chromakopia */
         }
     </style>
     <script>

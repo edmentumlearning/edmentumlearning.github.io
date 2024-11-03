@@ -29,15 +29,16 @@
             position: absolute;
             top: 10px;
             right: 10px;
+            display: flex; /* Use flex to align buttons */
+            gap: 10px; /* Space between buttons */
         }
         .nav-button {
             border: none;
             cursor: pointer;
             font-size: 16px;
-            margin-left: 10px;
-            padding: 10px;
+            padding: 10px 15px; /* Wider padding for better click area */
             border-radius: 5px;
-            transition: background-color 0.3s; /* Transition for hover effect */
+            transition: background-color 0.3s, transform 0.2s; /* Added transform for hover effect */
         }
         .nav-button.default {
             background-color: #ff4d4d; /* Red button */
@@ -45,6 +46,7 @@
         }
         .nav-button.default:hover {
             background-color: #e63939; /* Slightly darker red on hover */
+            transform: scale(1.05); /* Slightly enlarge button on hover */
         }
         .game-container {
             width: 80%; /* Wider box */
@@ -64,14 +66,32 @@
             padding: 5px 10px;
             background-color: #ff4d4d; /* Red button */
             color: white;
+            transition: background-color 0.3s, transform 0.2s; /* Added transition */
         }
         .fullscreen-button:hover {
             background-color: #e63939; /* Slightly darker red on hover */
+            transform: scale(1.05); /* Slightly enlarge button on hover */
         }
         iframe {
             width: 100%;
             height: 100%;
             border: none; /* No border for the iframe */
+        }
+        /* Light theme button styles */
+        body.light .nav-button.default {
+            background-color: #333; /* Dark button for light theme */
+            color: white; /* White text */
+        }
+        body.light .nav-button.default:hover {
+            background-color: #555; /* Lighter dark on hover */
+        }
+        /* Chromakopia theme button styles */
+        body.chromakopia .nav-button.default {
+            background-color: #000000; /* Black button for Chromakopia */
+            color: #FFFFFF; /* White text for Chromakopia buttons */
+        }
+        body.chromakopia .nav-button.default:hover {
+            background-color: #333333; /* Dark gray on hover for Chromakopia */
         }
     </style>
     <script>
