@@ -61,14 +61,23 @@
             const encodedUrl = encodeUrl(url);
             location.href = `game_pagewb.html?gameUrl=${encodedUrl}`;
         }
-        
+        // Function to Base64 encode the game folder and file names
+        function encodeGameData(folder, game) {
+        const gameData = JSON.stringify({ folder: folder, game: game });
+        return btoa(gameData); // Base64 encode the string
+    }
+
+    function navigateToGamePage(folder, game) {
+        const encodedGameData = encodeGameData(folder, game);
+        location.href = `game_page.html?data=${encodedGameData}`; // Pass the encoded data in the URL
+    }    
         function checkCookie() {
             const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
             if (!cookieValue) {
                 window.location.href = 'index.html'; // Redirect if cookie doesn't exist
             }
         }
-        
+
         function getCookie(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);
@@ -99,11 +108,11 @@
     <h1>super cool games to play</h1>
     
     <div>
-        <button class="game-button" onclick="location.href='game_page.html?game=slope&folder=slope'">Slope</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=minesweeper'">Minesweeper</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=2048'">2048</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=asteroids'">asteroids</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=wbwwb&folder=wbwwb'">We Become What We Behold</button>
+        <button class="game-button" onclick="navigateToGamePage('slope', 'slope')">Slope</button>
+        <button class="game-button" onclick="navigateToGamePage('minesweeper', 'index')">Minesweeper</button>
+        <button class="game-button" onclick="navigateToGamePage('2048', 'index')">2048</button>
+        <button class="game-button" onclick="navigateToGamePage('asteroids', 'index')">Asteroids</button>
+        <button class="game-button" onclick="navigateToGamePage('wbwwb', 'index')">We Become What We Behold</button>
         <button class="game-button" onclick="navigateToGame('https://ncase.me/anxiety')">anxiety</button>
         <button class="game-button" onclick="navigateToGame('https://1l56df6.github.io/Snow-Rider3D-main/index.html')">snowrider 3d</button>
         <button class="game-button" onclick="navigateToGame('https://shawn43.github.io/retrobowl-unlimited/')">retrobowl</button>
@@ -114,9 +123,13 @@
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Dino/')">dinosaur game</button>
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/SM64/')">super mario 64</button>
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/FNAF1-main/')">FNAF 1</button>
-        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Funkin-Html5-main/')">friday night funkin</button>
+        <button class="game-button" onclick="navigateToGamePage('fnaf2', 'index')">FNAF 2</button>
+        <button class="game-button" onclick="navigateToGamePage('fnaf3', 'index')">FNAF 3</button>
+        <button class="game-button" onclick="navigateToGamePage('fnaf4', 'index')">FNAF 4</button>
+        <button class="game-button" onclick="navigateToGamePage('fnaf5', 'index')">FNAF 5</button>
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/UCN-HTML5-main/')">ultimate custom night</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=minecraft'">minecraft</button>
+        <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Funkin-Html5-main/')">friday night funkin</button>
+        <button class="game-button" onclick="navigateToGamePage('minecraft', 'index')">minecraft</button>
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Tetris/')">tetris</button>
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Flash/bloonstd')">bloons td 2</button>
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/FlappyBird/')">flappy bird</button>
@@ -138,7 +151,7 @@
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/RooftopSnipers')">rooftop snipers</button>
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/StickyNinja')">sticky ninja</button>
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/BobTheRobber2')">bob the robber2</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=1v1lol'">1v1.lol</button>
+        <button class="game-button" onclick="navigateToGamePage('1v1lol', 'index')">1v1.lol</button>
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/JetpackJoyride/')">jetpack joyride</button>
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/FruitNinja/')">fruit ninja</button>
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/TempleRun2/')">temple run 2</button>
@@ -149,37 +162,48 @@
         <button class="game-button" onclick="navigateToGame('https://funschoolmath.github.io/Emulator/')">emulator</button>
         <button class="game-button" onclick="navigateToGame('https://datseagull.github.io/newgames/houseofhazards/index.html')">house of hazards</button>
         <button class="game-button" onclick="navigateToGame('https://oasis.decart.ai/')">minecraft schizo edition</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=sans'">sans fight</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=baldisbasics'">baldis basics</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=soccer'">soccer</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=chess'">chess</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=holeio'">hole.io</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=learntofly2'">learntofly2</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=learntofly3'">learntofly3</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=yohoho'">yohoho.io</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=paperio2'">paperio 2</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=paperio3d'">paperio 3d</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=ducklife'">ducklife 1</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=ducklife2'">ducklife 2</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=ducklife3'">ducklife 3</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=ducklife4'">ducklife 4</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=ducklife5'">ducklife 5</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=ducklife6'">ducklife 6</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=funnyshooter2'">funnyshooter 2</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=vex'">vex 1</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=vex2'">vex 2</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=vex3'">vex 3</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=vex4'">vex 4</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=vex5'">vex 5</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=vex6'">vex 6</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=doodlejump'">doodle jump</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=happywheels'">happy wheels</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=cocl'">cookie clicker</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=bitlife'">bitlife</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=ovo'">ovo</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=deathrun3d'">deathrun 3d</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=snowbattleio'">snowbattle.io</button>
-        <button class="game-button" onclick="location.href='game_page.html?game=index&folder=vex3'">vex 3</button>
+        <button class="game-button" onclick="navigateToGamePage('sans', 'index')">sans fight</button>
+        <button class="game-button" onclick="navigateToGamePage('baldisbasics', 'index')">baldis basics</button>
+        <button class="game-button" onclick="navigateToGamePage('soccer', 'index')">soccer</button>
+        <button class="game-button" onclick="navigateToGamePage('chess', 'index')">chess</button>
+        <button class="game-button" onclick="navigateToGamePage('holeio', 'index')">hole.io</button>
+        <button class="game-button" onclick="navigateToGamePage('learntofly2', 'index')">learntofly2</button>
+        <button class="game-button" onclick="navigateToGamePage('learntofly3', 'index')">learntofly3</button>
+        <button class="game-button" onclick="navigateToGamePage('yohoho', 'index')">yohoho.io</button>
+        <button class="game-button" onclick="navigateToGamePage('paperio2', 'index')">paperio 2</button>
+        <button class="game-button" onclick="navigateToGamePage('paperio3d', 'index')">paperio 3d</button>
+        <button class="game-button" onclick="navigateToGamePage('ducklife', 'index')">ducklife 1</button>
+        <button class="game-button" onclick="navigateToGamePage('ducklife2', 'index')">ducklife 2</button>
+        <button class="game-button" onclick="navigateToGamePage('ducklife3', 'index')">ducklife 3</button>
+        <button class="game-button" onclick="navigateToGamePage('ducklife4', 'index')">ducklife 4</button>
+        <button class="game-button" onclick="navigateToGamePage('ducklife5, index')">ducklife 5</button>
+        <button class="game-button" onclick="navigateToGamePage('ducklife6, index')">ducklife 6</button>
+        <button class="game-button" onclick="navigateToGamePage('funnyshooter2', 'index')">funnyshooter 2</button>
+        <button class="game-button" onclick="navigateToGamePage('vex', 'index')">vex 1</button>
+        <button class="game-button" onclick="navigateToGamePage('vex2', 'index')">vex 2</button>
+        <button class="game-button" onclick="navigateToGamePage('vex3', 'index')">vex 3</button>
+        <button class="game-button" onclick="navigateToGamePage('vex4', 'index')">vex 4</button>
+        <button class="game-button" onclick="navigateToGamePage('vex5', 'index')">vex 5</button>
+        <button class="game-button" onclick="navigateToGamePage('vex6', 'index')">vex 6</button>
+        <button class="game-button" onclick="navigateToGamePage('doodlejump', 'index')">doodle jump</button>
+        <button class="game-button" onclick="navigateToGamePage('happywheels', 'index')">happy wheels</button>
+        <button class="game-button" onclick="navigateToGamePage('cocl', 'index')">cookie clicker</button>
+        <button class="game-button" onclick="navigateToGamePage('bitlife', 'index')">bitlife</button>
+        <button class="game-button" onclick="navigateToGamePage('ovo', 'index')">ovo</button>
+        <button class="game-button" onclick="navigateToGamePage('deathrun3d', 'index')">deathrun 3d</button>
+        <button class="game-button" onclick="navigateToGamePage('snowbattleio', 'index')">snowbattle.io</button>
+        <button class="game-button" onclick="navigateToGame('https://scratch.mit.edu/projects/163771748/embed')">biggie cheese boss battle</button>
+        <button class="game-button" onclick="navigateToGame('https://scratch.mit.edu/projects/389464290/embed')">getting over it scratch</button>
+        <button class="game-button" onclick="navigateToGamePage('gladihoppers', 'index')">gladihoppers</button>
+        <button class="game-button" onclick="navigateToGamePage('ironsnout', 'index')">pig super</button>
+        <button class="game-button" onclick="navigateToGamePage('worlds-hardest-game', 'index')">worlds hardest game</button>
+        <button class="game-button" onclick="navigateToGamePage('worlds-hardest-game-2', 'index')">worlds hardest game 2</button>
+        <button class="game-button" onclick="navigateToGamePage('run1', 'index')">run 1</button>
+        <button class="game-button" onclick="navigateToGamePage('run2', 'index')">run 2</button>
+        <button class="game-button" onclick="navigateToGamePage('run3', 'index')">run 3</button>
+        <button class="game-button" onclick="navigateToGamePage('dogecoin-mining-simulator', 'index')">doge coin mining</button>
+        <button class="game-button" onclick="navigateToGamePage('eggycar', 'index')">eggy car</button>
+        <button class="game-button" onclick="navigateToGame('https://scratch.mit.edu/projects/105500895/embed')">geometry dash</button>
     </div>
 </body>
 </html>
