@@ -111,16 +111,38 @@
             }
         }
 
+        // Function to Base64 encode the game folder and file names
+        function encodeGameData(folder, game) {
+            const gameData = JSON.stringify({ folder: folder, game: game });
+            return btoa(gameData); // Base64 encode the string
+        }
+
+        function navigateToGamePage(folder, game) {
+            const encodedGameData = encodeGameData(folder, game);
+            location.href = `game_page.html?data=${encodedGameData}`; // Pass the encoded data in the URL
+        }
+
         window.onload = function() {
             checkCookie();
             applyTheme(); // Apply theme on page load
 
             // Load the game based on the query parameters
             const params = new URLSearchParams(window.location.search);
-            const game = params.get('game').replace(/ /g, '-'); // Replace spaces with hyphens
-            const folder = params.get('folder'); // Get the folder name
-            const iframe = document.getElementById('game-iframe');
-            iframe.src = `games/${folder}/${game}.html`; // Set the iframe source to the game file
+            const encodedData = params.get('data'); // Get Base64-encoded data from URL
+
+            if (encodedData) {
+                // Decode the Base64 data and extract the folder and game
+                const decodedData = atob(encodedData); // Decode from Base64
+                const gameData = JSON.parse(decodedData); // Parse JSON
+
+                const folder = gameData.folder;
+                const game = gameData.game.replace(/ /g, '-'); // Replace spaces with hyphens
+
+                const iframe = document.getElementById('game-iframe');
+                iframe.src = `games/${folder}/${game}.html`; // Set the iframe source to the game file
+            } else {
+                alert("No game data found!");
+            }
         };
 
         function toggleFullScreen() {
