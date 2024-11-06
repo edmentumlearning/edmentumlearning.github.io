@@ -1,2 +1,2 @@
 # sigmavro.github.io
-cool website for me and people
+yo cool website for school and stuff
