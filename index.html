@@ -107,16 +107,19 @@
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
 
-        // Predefined keys (Base64 encoded)
+        // Predefined keys
         const keys = {
             'Y293Ym95c2FyZXRyYXNo': 'key1', 
             'YzJsbmJXRjJjbTg9': 'key2', 
             'YUdWc2JHOVhiM0pzWkE9PQ==': 'key3',
             'Y29vbGtleWZvcmFkcmlhbnNvaWRvbnRlbnRlcm90aGVybG9uZ3N0dWZmYnV0dGhpc2lzcHJldHR5bG9uZ3NvaWRrbGV0bWVhZGRteXNpZ25hdHVyZTEyMzU1NnNpZ21hYnJvYW5kc3R1ZmZpZw==': 'key4',
             'Y2hpY2tpbnBvdHBpZTEyMw==': 'key5',  
+            'c2tpYmlkaXNpZ21hNDYx': 'key6',
+            'd2VpbmVybXVuY2hlcjU4': 'key7',
+            'Z2xpenp5Z29iYmxlcjQ5': 'key8',
         };
 
-        const specialKey = '123556@a'; // Updated special bypass key
+        const specialKey = 'lockoutgoboom'; // Updated special bypass key
         let incorrectAttempts = 0; // Track incorrect attempts
         let lockout = false; // Lockout status
 
@@ -124,21 +127,21 @@
             const resultElement = document.getElementById('result');
             const inputKey = document.getElementById('keyInput').value.trim(); // Trim whitespace
 
+            if (inputKey == specialKey) {
+                incorrectAttempts = 0; // Reset incorrect attempts
+                lockout = false; // Disable lockout
+                resultElement.textContent = "Lockout disabled. You can continue.";
+                resultElement.style.color = "purple"; // Change color to indicate success
+                return; // Exit the function
+            }
+
             if (lockout) {
                 resultElement.textContent = "You are locked out. Please wait.";
                 return;
             }
 
-            if (inputKey === specialKey) {
-                incorrectAttempts = 0; // Reset incorrect attempts
-                lockout = false; // Disable lockout
-                resultElement.textContent = "Lockout disabled. You can continue.";
-                resultElement.style.color = "blue"; // Change color to indicate success
-                return; // Exit the function
-            }
-
-            // Decode input key from Base64
-            const decodedKey = btoa(inputKey); // Encode to Base64 to match keys
+            
+            const decodedKey = btoa(inputKey); 
             if (keys[decodedKey]) {
                 resultElement.textContent = "Key is valid! Redirecting...";
                 resultElement.style.color = "green";
