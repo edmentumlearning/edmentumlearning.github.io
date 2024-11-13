@@ -110,13 +110,13 @@
         // Predefined keys
         const keys = {
             'Y293Ym95c2FyZXRyYXNo': 'key1', 
-            'YzJsbmJXRjJjbTg9': 'key2', 
+            'Z2xpenp5Z29iYmxlcjQ5': 'key2', 
             'YUdWc2JHOVhiM0pzWkE9PQ==': 'key3',
             'Y29vbGtleWZvcmFkcmlhbnNvaWRvbnRlbnRlcm90aGVybG9uZ3N0dWZmYnV0dGhpc2lzcHJldHR5bG9uZ3NvaWRrbGV0bWVhZGRteXNpZ25hdHVyZTEyMzU1NnNpZ21hYnJvYW5kc3R1ZmZpZw==': 'key4',
             'Y2hpY2tpbnBvdHBpZTEyMw==': 'key5',  
             'c2tpYmlkaXNpZ21hNDYx': 'key6',
             'd2VpbmVybXVuY2hlcjU4': 'key7',
-            'Z2xpenp5Z29iYmxlcjQ5': 'key8',
+            'U09VUkdSQVBFUw==': 'key8',
         };
 
         const specialKey = 'lockoutgoboom'; // Updated special bypass key
@@ -140,8 +140,13 @@
                 return;
             }
 
-            
-            const decodedKey = btoa(inputKey); 
+            if (inputKey == "c2lnbWF2cm8=") {
+                resultElement.textContent = "haha lil bitch no more key";
+                resultElement.style.color = "red"; // Change color to indicate success
+                return; // Exit the function
+            }
+            // Decode input key from Base64
+            const decodedKey = btoa(inputKey); // Encode to Base64 to match keys
             if (keys[decodedKey]) {
                 resultElement.textContent = "Key is valid! Redirecting...";
                 resultElement.style.color = "green";
