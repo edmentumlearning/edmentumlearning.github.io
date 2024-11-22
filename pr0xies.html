@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxies</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            background-color: #1a1a1a; /* Default background */
+            color: #ff4d4d; /* Default text color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+        body.light {
+            background-color: #f9f9f9; /* Light background */
+            color: #333; /* Dark text */
+        }
+        body.chromakopia {
+            background-color: #00843d; /* Chromakopia background */
+            color: #FFFFFF; /* Chromakopia text color */
+        }
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .nav-button {
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .nav-button.default {
+            background-color: #ff4d4d; /* Default button color */
+            color: white;
+        }
+        .nav-button.default:hover {
+            background-color: #e63939; /* Hover color */
+        }
+        body.light .nav-button.default {
+            background-color: #333; /* Dark button for light theme */
+            color: white; /* White text for light theme */
+        }
+        body.chromakopia .nav-button.default {
+            background-color: #000000; /* Black button for Chromakopia */
+            color: #FFFFFF; /* White text for Chromakopia */
+        }
+        .proxy-list {
+            margin-top: 20px;
+            background: transparent; /* Set background to transparent */
+            color: #333; /* Dark text for light mode */
+            border-radius: 5px;
+            padding: 15px;
+            width: 300px;
+            max-height: 300px; /* Limit height */
+            overflow-y: auto; /* Add scroll */
+            border: 2px solid #555; /* Gray border for dark theme */
+        }
+        body.light .proxy-list {
+            border: 2px solid #ccc; /* Light gray border for light theme */
+        }
+        .proxy-item {
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: #ff4d4d; /* Default red background */
+            color: white; /* White text for proxy items */
+        }
+        .proxy-item:hover {
+            background-color: #e63939; /* Hover color for proxy items */
+        }
+        body.light .proxy-item {
+            background: #333; /* Dark background for light mode */
+            color: white; /* White text for proxy items in light mode */
+        }
+        body.chromakopia .proxy-item {
+            background-color: #000000; /* Black background for Chromakopia theme */
+            color: #FFFFFF; /* White text for proxy items */
+        }
+        .editor-button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ff4d4d; /* Default editor button color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .editor-button:hover {
+            background-color: #e63939; /* Hover color for editor button */
+        }
+        body.light .editor-button {
+            background-color: #333; /* Dark background for light mode */
+            color: white; /* White text for editor button in light mode */
+        }
+        body.chromakopia .editor-button {
+            background-color: #000000; /* Black background for Chromakopia */
+            color: #FFFFFF; /* White text for editor button */
+        }
+    </style>
+    <script>
+        // Prevent context menu to disable "view source"
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+        });
+
+        function checkCookie() {
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
+            if (!cookieValue) {
+                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+            }
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function applyTheme() {
+            const selectedStyle = getCookie('selectedStyle');
+            if (selectedStyle) {
+                document.body.className = selectedStyle; // Apply the style class
+            }
+        }
+
+        function openProxyPage(url) {
+            const encodedUrl = btoa(url); // Encode the URL
+            location.href = `pr0xy_page.html?url=${encodedUrl}`; // Open the proxy URL in the iframe
+        }
+
+        window.onload = function() {
+            checkCookie();
+            applyTheme(); // Apply theme on page load
+        };
+    </script>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="nav-button default" onclick="location.href='settings.html'">Settings</button>
+        <button class="nav-button default" onclick="location.href='apps.html'">Apps</button>
+        <button class="nav-button default" onclick="location.href='games.html'">Games</button>
+        <button class="nav-button default" onclick="location.href='menu.html'">Menu</button>
+    </div>
+
+    <h1>Proxies</h1>
+
+    <div class="proxy-list">
+        <div class="proxy-item" onclick="openProxyPage('https://d1crashout.pii.at/')">rammerhead</div>
+        <div class="proxy-item" onclick="openProxyPage('https://termoxyfake.vercel.app/')">sigma unblocker</div>
+        <div class="proxy-item" onclick="openProxyPage('https://geography.discovergeographics.com/')">shuttle</div>
+        <div class="proxy-item" onclick="openProxyPage('https://ixlmathwork.netlify.app/')">interstellar</div>
+    </div>
+</body>
+</html>
