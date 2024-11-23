@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
    <head>
+       function checkCookie() {
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
+            if (!cookieValue) {
+                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+            }
+        }      
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
