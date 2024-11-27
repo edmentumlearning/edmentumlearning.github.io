@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Page</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh; /* Full height */
+            background-color: #1a1a1a; /* Dark gray background */
+            color: #ff4d4d; /* Red text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center; /* Center text */
+        }
+        body.light {
+            background-color: #f9f9f9; /* Light background */
+            color: #333; /* Dark text */
+        }
+        body.chromakopia {
+            background-color: #00843d; /* Chromakopia background */
+            color: #FFFFFF; /* Chromakopia text color */
+        }
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex; /* Use flex to align buttons */
+            gap: 10px; /* Space between buttons */
+        }
+        .nav-button {
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px 15px; /* Wider padding for better click area */
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s; /* Added transform for hover effect */
+        }
+        .nav-button.default {
+            background-color: #ff4d4d; /* Red button */
+            color: white;
+        }
+        .nav-button.default:hover {
+            background-color: #e63939; /* Slightly darker red on hover */
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+        .game-container {
+            width: 80%; /* Wider box */
+            height: 80%; /* Taller box */
+            border: 2px solid #ff4d4d; /* Red border */
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative; /* Position for fullscreen button */
+        }
+        .fullscreen-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #ff4d4d; /* Red button */
+            color: white;
+            transition: background-color 0.3s, transform 0.2s; /* Added transition */
+        }
+        .fullscreen-button:hover {
+            background-color: #e63939; /* Slightly darker red on hover */
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* No border for the iframe */
+        }
+        /* Light theme button styles */
+        body.light .nav-button.default {
+            background-color: #333; /* Dark button for light theme */
+            color: white; /* White text */
+        }
+        body.light .nav-button.default:hover {
+            background-color: #555; /* Lighter dark on hover */
+        }
+        /* Chromakopia theme button styles */
+        body.chromakopia .nav-button.default {
+            background-color: #000000; /* Black button for Chromakopia */
+            color: #FFFFFF; /* White text for Chromakopia buttons */
+        }
+        body.chromakopia .nav-button.default:hover {
+            background-color: #333333; /* Dark gray on hover for Chromakopia */
+        }
+    </style>
+    <script>
+        function checkCookie() {
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
+            if (!cookieValue) {
+                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+            }
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function applyTheme() {
+            const selectedStyle = getCookie('selectedStyle');
+            if (selectedStyle) {
+                document.body.className = selectedStyle; // Apply the style class
+            }
+        }
+
+        window.onload = function() {
+            checkCookie();
+            applyTheme(); // Apply theme on page load
+
+            // Load the app based on the query parameters
+            const params = new URLSearchParams(window.location.search);
+            const encodedAppUrl = params.get('url'); // Get the encoded app URL
+            if (encodedAppUrl) {
+                const appUrl = atob(encodedAppUrl); // Decode the URL
+                document.getElementById('app-iframe').src = appUrl; // Set the iframe source to the decoded app URL
+            } else {
+                document.body.innerHTML = "<h1>No app URL provided!</h1>"; // Handle no URL case
+            }
+        };
+
+        function toggleFullScreen() {
+            const elem = document.getElementById('game-container');
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { // Firefox
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { // IE/Edge
+                elem.msRequestFullscreen();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="nav-button default" onclick="location.href='apps.html'">back</button>
+    </div>
+
+    <h1>sigma app</h1>
+
+    <div class="game-container" id="game-container">
+        <button class="fullscreen-button" onclick="toggleFullScreen()">Fullscreen</button>
+        <iframe id="app-iframe" src="" title="App Display"></iframe>
+    </div>
+</body>
+</html>

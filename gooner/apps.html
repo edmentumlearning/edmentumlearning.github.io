@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>apps</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            background-color: #1a1a1a; /* Dark gray background */
+            color: #ff4d4d; /* Red text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+        body.light {
+            background-color: #f9f9f9; /* Light background */
+            color: #333; /* Dark text */
+        }
+        body.chromakopia {
+            background-color: #00843d; /* Chromakopia background */
+            color: #FFFFFF; /* Chromakopia text color */
+        }
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex; /* Use flex to align buttons */
+            gap: 10px; /* Space between buttons */
+        }
+        .nav-button, .app-button {
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s; /* Transition for hover effect */
+        }
+        .nav-button {
+            background-color: #ff4d4d; /* Default red */
+            color: white;
+        }
+        .app-button {
+            background-color: #ff4d4d; /* Default red */
+            color: white;
+        }
+        .nav-button:hover, .app-button:hover {
+            background-color: #e63939; /* Darker red on hover */
+        }
+        body.light .nav-button, body.light .app-button {
+            background-color: #333; /* Dark button for light theme */
+            color: white; /* White text */
+        }
+        body.chromakopia .nav-button, body.chromakopia .app-button {
+            background-color: #000000; /* Black button for Chromakopia */
+            color: #FFFFFF; /* White text for Chromakopia buttons */
+        }
+    </style>
+    <script>
+        function base64Encode(str) {
+            return btoa(unescape(encodeURIComponent(str))); // Encode the string to Base64
+        }
+
+        function checkCookie() {
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
+            if (!cookieValue) {
+                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+            }
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function applyTheme() {
+            const selectedStyle = getCookie('selectedStyle');
+            if (selectedStyle) {
+                document.body.className = selectedStyle; // Apply the style class
+            }
+        }
+
+        function loadWebApp(url) {
+            const encodedUrl = base64Encode(url); // Base64 encode the URL
+            location.href = `app_pagewb.html?url=${encodedUrl}`; // Redirect to app_pagewb.html with encoded URL
+        }
+
+        function loadLocalApp(path) {
+            const encodedPath = base64Encode(path); // Base64 encode the local path
+            location.href = `app_page.html?url=${encodedPath}`; // Redirect to app_page.html with encoded path
+        }
+
+        window.onload = function() {
+            checkCookie();
+            applyTheme(); // Apply theme on page load
+        };
+    </script>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="nav-button" onclick="location.href='settings.html'">settings</button>
+        <button class="nav-button" onclick="location.href='menu.html'">menu</button>
+        <button class="nav-button" onclick="location.href='games.html'">games</button>
+        <button class="nav-button" onclick="location.href='game_hcks.html'">hacks</button>
+        <button class="nav-button" onclick="location.href='pr0xies.html'">Proxies</button>
+        
+    </div>
+
+    <h1>Apps Page</h1>
+    <p>choose a sigma app</p>
+
+    <div class="app-buttons">
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fgxrlmrg')">tiktok</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-wuw%2Cslarcjav.aoo%2F')">snapchat</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-dksaopd%2Ccmm-')">discord</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-smuldalmuf.aoo%2F')">soundcloud</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-wuw%2Cymuvu%60e%2Ccmm-%3FvhgmgRgfpeqh%3F1')">youtube</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-wuw%2Ccjeqs%2Ccmm-')">chess.com</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-eeg%7B-aap.eivhwb%2Cim%2F')">eggy car</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-vqcmdg.fet%2F')">vscode</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-wuw%2Collkng-ryvhmn%2Ccmm-')">python code editor</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-x%2Ccmm-')">X</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-pna%7B.eedopcgnmw%2Ccmm-mcln%2F')">geforce now(if you have an nvidia acc, you can play fortnite)</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-pmkk.aoo%2F')">poki</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-nmw%2Cge%2F')">now.gg</button>
+        <button class="app-button" onclick="loadWebApp('https://sigmavro.github.io/static/tiw/hvtrs8%2F-tgmrmcino%2Ccmm-')">temp mail(email but no login or anything)</button>
+        <button class="app-button" onclick="loadLocalApp('apps/windows11/index.html')">windows 11</button>
+        <button class="app-button" onclick="loadLocalApp('apps/paint/index.html')">paint</button>
+        <button class="app-button" onclick="loadLocalApp('apps/zip/index.html')">file unzipper</button>
+        <button class="app-button" onclick="loadLocalApp('apps/wiki/index.html')">wiki</button>
+        <button class="app-button" onclick="loadLocalApp('apps/godo/index.html')">godo game builder</button>
+        <button class="app-button" onclick="loadLocalApp('apps/deobsfucator/index.html')">javascript deobfuscator</button>
+        <button class="app-button" onclick="loadLocalApp('apps/fluidsim/index.html')">fluid simulator</button>
+        <button class="app-button" onclick="loadLocalApp('apps/thirtydollarwebsite/index.html')">30dollarwebsite(music maker)</button>
+        <button class="app-button" onclick="loadLocalApp('apps/gba/index.html')">game boy emulator</button>
+    </div>
+</body>
+</html>

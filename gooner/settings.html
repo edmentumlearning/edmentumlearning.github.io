@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            background-color: #1a1a1a; /* Default background */
+            color: #ff4d4d; /* Default text color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+        body.light {
+            background-color: #f9f9f9; /* Light background */
+            color: #333; /* Dark text */
+        }
+        body.chromakopia {
+            background-color: #00843d; /* Chromakopia background */
+            color: #FFFFFF; /* Chromakopia text color */
+        }
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .nav-button, .theme-button {
+            background-color: #ff4d4d; /* Default button color */
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .nav-button:hover, .theme-button:hover {
+            background-color: #e63939; /* Hover color */
+        }
+        body.light .nav-button, body.light .theme-button {
+            background-color: #333; /* Dark button for light theme */
+        }
+        body.chromakopia .nav-button, body.chromakopia .theme-button {
+            background-color: #000000; /* Black button for Chromakopia */
+            color: #FFFFFF; /* White text for Chromakopia buttons */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+        });
+        
+        function checkCookie() {
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
+            if (!cookieValue) {
+                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+            }
+        }
+
+        function toggleTheme(theme) {
+            document.body.className = theme; // Set the body class for theme
+            document.cookie = `selectedStyle=${theme}; max-age=86400`; // Set cookie for 24 hours
+        }
+
+        function applyTheme() {
+            const selectedStyle = getCookie('selectedStyle');
+            if (selectedStyle) {
+                document.body.className = selectedStyle; // Apply the style class
+            }
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function openGame() {
+            var win = window.open('', '_blank', 'width=' + window.innerWidth + ',height=' + window.innerHeight + ',resizable=yes');
+            var url = "https://sigmavro.github.io/menu.html";
+            var iframe = win.document.createElement('iframe');
+            iframe.style.width = "100vw"; // Full viewport width
+            iframe.style.height = "100vh"; // Full viewport height
+            iframe.style.border = "none"; // No border
+            iframe.src = url;
+            win.document.body.style.margin = "0"; // Remove default margin
+            win.document.body.appendChild(iframe);
+        }
+
+        window.onload = function() {
+            checkCookie();
+            applyTheme(); // Apply theme on page load
+        };
+    </script>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="nav-button" onclick="location.href='menu.html'">menu</button>
+        <button class="nav-button" onclick="location.href='apps.html'">apps</button>
+        <button class="nav-button" onclick="location.href='games.html'">games</button>
+        <button class="nav-button" onclick="location.href='game_hcks.html'">hacks</button>
+        <button class="nav-button" onclick="location.href='pr0xies.html'">proxies</button>
+    </div>
+    
+    <h1>Settings</h1>
+    <button class="theme-button" onclick="toggleTheme('')">Dark Theme</button>
+    <button class="theme-button" onclick="toggleTheme('light')">Light Theme</button>
+    <button class="theme-button" onclick="toggleTheme('chromakopia')">Chromakopia Theme</button>
+    <button class="theme-button" onclick="openGame()">about:blank cloak(hides the website from go guardian and search history)</button>
+</body>
+</html>
