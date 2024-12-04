@@ -71,23 +71,29 @@
         }
     </style>
     <script>
-        // Function to fetch and copy the script to the clipboard
+        function banUser(durationInSeconds = 3600) {
+            document.cookie = `banned=true; max-age=${durationInSeconds}; path=/`; // Set the banned cookie
+            alert(`get banned 😭 vro, your banned for ${durationInSeconds / 60} mins.`);
+            window.location.href = 'banned.html';
+        }
+        function checkBanned() {
+            const bannedKey = getCookie('banned');
+            if (bannedKey) {
+                window.location.href = 'banned.html';
+            }
+        }
         function copyScriptToClipboard(scriptUrl) {
-            // Fetch the script content from the provided URL
             fetch(scriptUrl)
                 .then(response => response.text())
                 .then(scriptContent => {
-                    // Create a temporary textarea to copy the script into the clipboard
                     const textarea = document.createElement('textarea');
-                    textarea.value = scriptContent; // Set the content of the script to the textarea
+                    textarea.value = scriptContent;
                     document.body.appendChild(textarea);
-                    textarea.select(); // Select the content of the textarea
-                    document.execCommand('copy'); // Execute the copy command
+                    textarea.select();
+                    document.execCommand('copy');
 
-                    // Remove the temporary textarea
                     document.body.removeChild(textarea);
 
-                    // Announce that the script has been copied
                     alert("Script copied to clipboard, come to me for help if you don't know how to inject the script into the game.");
                 })
                 .catch(error => {
@@ -96,11 +102,10 @@
                 });
         }
 
-        // Check if the 'validKey' cookie exists, and if not, redirect
         function checkCookie() {
             const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
             if (!cookieValue) {
-                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+                window.location.href = 'index.html';
             }
         }
 

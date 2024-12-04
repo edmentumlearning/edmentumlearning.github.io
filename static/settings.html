@@ -69,6 +69,17 @@
             });
         });
         
+        function banUser(durationInSeconds = 3600) {
+            document.cookie = `banned=true; max-age=${durationInSeconds}; path=/`; // Set the banned cookie
+            alert(`get banned 😭 vro, your banned for ${durationInSeconds / 60} mins.`);
+            window.location.href = 'banned.html';
+        }
+        function checkBanned() {
+            const bannedKey = getCookie('banned');
+            if (bannedKey) {
+                window.location.href = 'banned.html';
+            }
+        }
         function checkCookie() {
             const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
             if (!cookieValue) {

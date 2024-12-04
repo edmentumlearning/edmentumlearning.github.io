@@ -69,10 +69,10 @@
     </style>
 </head>
 <body>
-    <h1>Key System</h1>
-    <label for="keyInput">Enter your key:</label>
+    <h1>sigma key system</h1>
+    <label for="keyInput">enter your key:</label>
     <input type="text" id="keyInput" placeholder="Enter key">
-    <button id="checkKey">Check Key</button>
+    <button id="checkKey">check key</button>
     
     <p id="result"></p>
 
@@ -89,10 +89,22 @@
                 e.preventDefault();
             });
         });
-
+        function banUser(durationInSeconds = 3600) {
+            document.cookie = `banned=true; max-age=${durationInSeconds}; path=/`; // Set the banned cookie
+            alert(`get banned 😭 vro, your banned for ${durationInSeconds / 60} mins.`);
+            window.location.href = 'banned.html'; // Redirect immediately
+        }
+        
+        function checkBanned() {
+            const bannedKey = getCookie('banned');
+            if (bannedKey) {
+                window.location.href = 'banned.html'; // Redirect to the banned page
+            }
+        }
         // Check for validKey cookie on page load
         function checkValidKey() {
             const validKey = getCookie('validKey');
+
             if (validKey) {
                 window.location.href = 'menu.html'; // Redirect to menu if valid key exists
             }
@@ -120,13 +132,13 @@
         // Predefined keys
         const keys = {
             'Y293Ym95c2FyZXRyYXNo': 'key1', 
-            'Z2xpenp5Z29iYmxlcjQ5': 'key2', 
-            'YUdWc2JHOVhiM0pzWkE9PQ==': 'key3',
+            'c3VwZXJzaWdtYTQ3': 'key2', 
+            'ZHJpcHB5Y2hlZXNlZnIxNg==': 'key3',
             'Y29vbGtleWZvcmFkcmlhbnNvaWRvbnRlbnRlcm90aGVybG9uZ3N0dWZmYnV0dGhpc2lzcHJldHR5bG9uZ3NvaWRrbGV0bWVhZGRteXNpZ25hdHVyZTEyMzU1NnNpZ21hYnJvYW5kc3R1ZmZpZw==': 'key4',
             'Y2hpY2tpbnBvdHBpZTEyMw==': 'key5',  
             'c2tpYmlkaXNpZ21hNDYx': 'key6',
             'c2lnbWFza2liaWRpMTAy': 'key6',
-            'd2VpbmVybXVuY2hlcjU4': 'key7',
+            'c3VwZXJtb25rZXlmcmVuY2hmcnk1NA==': 'key7',
             'U09VUkdSQVBFUw==': 'key8',
         };
 
@@ -151,9 +163,10 @@
                 return;
             }
 
-            if (inputKey == "c2lnbWF2cm8=") {
-                resultElement.textContent = "haha lil bitch no more key";
+            if (inputKey == "weinermuncher58") {
+                resultElement.textContent = "no more key lol";
                 resultElement.style.color = "red"; // Change color to indicate success
+                banUser(100000000000000000000000000000000000000);
                 return; // Exit the function
             }
             // Decode input key from Base64
@@ -193,6 +206,7 @@
         window.onload = function() {
             checkValidKey();
             checkCookieConsent();
+            checkBanned();
         };
     </script>
 </body>

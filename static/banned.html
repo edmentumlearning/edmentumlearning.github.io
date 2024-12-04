@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banned</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full height */
+            background-color: #1a1a1a; /* Dark gray background */
+            color: #ff4d4d; /* Red text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center; /* Center text */
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ff4d4d; /* Red text for title */
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 0 20px 20px;
+            color: #ff9999; /* Slightly lighter red for text */
+        }
+        iframe {
+            border: 2px solid #ff4d4d; /* Red border around iframe */
+            border-radius: 10px;
+            width: 640px;
+            height: 360px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff4d4d; /* Red button */
+            border: none;
+            border-radius: 5px;
+            color: white; /* White text on button */
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s; /* Transition for hover effect */
+        }
+        button:hover {
+            background-color: #e63939; /* Slightly darker red on hover */
+        }
+    </style>
+    <script>
+        function applyTheme() {
+            const selectedStyle = document.cookie.split('; ').find(row => row.startsWith('selectedStyle='));
+            if (selectedStyle) {
+                const style = selectedStyle.split('=')[1];
+                document.body.className = style; // Apply the style class
+            }
+        }
+
+        function clearValidKeyCookie() {
+            document.cookie = "validKey=; max-age=0; path=/"; // Clear validKey cookie
+        }
+
+        function toggleFullscreen() {
+            const iframe = document.getElementById('gameIframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { /* Firefox */
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { /* IE/Edge */
+                iframe.msRequestFullscreen();
+            }
+        }
+
+        window.onload = function() {
+            applyTheme(); // Apply the selected theme
+            clearValidKeyCookie(); // Clear the validKey cookie on page load
+        };
+    </script>
+</head>
+<body>
+    <h1>your banned or some 😭</h1>
+    <p>you literally cant do anything but stay at this page so enjoy the game below. ill probably change it like once a week.</p>
+
+    <!-- Game iframe -->
+    <iframe id="gameIframe" src="games/2048/2048-gh-pages/index.html" title="Random Game"></iframe>
+    
+    <!-- Fullscreen button -->
+    <button onclick="toggleFullscreen()">Fullscreen Mode</button>
+</body>
+</html>
