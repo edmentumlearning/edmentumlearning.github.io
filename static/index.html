@@ -175,7 +175,7 @@
                 resultElement.textContent = "Key is valid! Redirecting...";
                 resultElement.style.color = "green";
 
-                document.cookie = "validKey=true; max-age=3600; path=/";
+                document.cookie = `validKey=true; max-age=3600; path=/; SameSite=None; Secure`;
 
                 setTimeout(() => {
                     window.location.href = "menu.html"; // Redirect to games page
