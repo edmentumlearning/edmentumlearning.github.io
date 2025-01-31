@@ -90,7 +90,7 @@
             });
         });
         function banUser(durationInSeconds = 3600) {
-            document.cookie = `banned=true; max-age=${durationInSeconds}; path=/`; // Set the banned cookie
+            document.cookie = `banned=true; max-age=${durationInSeconds}; path=/; SameSite=None; Secure`;
             alert(`get banned 😭 vro, your banned for ${durationInSeconds / 60} mins.`);
             window.location.href = 'banned.html'; // Redirect immediately
         }
