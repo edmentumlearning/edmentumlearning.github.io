@@ -20,37 +20,37 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            height: 100vh; /* Full height */
-            background-color: #1a1a1a; /* Dark gray background */
-            color: #ff4d4d; /* Red text */
+            height: 100vh;
+            background-color: #1a1a1a; 
+            color: #ff4d4d; 
             font-family: Arial, sans-serif;
             margin: 0;
-            text-align: center; /* Center text */
+            text-align: center; 
         }
         input {
             padding: 10px;
             margin-bottom: 10px;
-            border: 1px solid #ff4d4d; /* Red border */
+            border: 1px solid #ff4d4d; 
             border-radius: 5px;
-            background-color: #2a2a2a; /* Darker background for input */
-            color: #ff4d4d; /* Red text for input */
+            background-color: #2a2a2a; 
+            color: #ff4d4d; 
         }
         button {
             padding: 10px 15px;
-            background-color: #ff4d4d; /* Red button */
+            background-color: #ff4d4d; 
             border: none;
             border-radius: 5px;
-            color: white; /* White text on button */
+            color: white; 
             cursor: pointer;
-            transition: background-color 0.3s; /* Transition for hover effect */
+            transition: background-color 0.3s; 
         }
         button:hover {
-            background-color: #e63939; /* Slightly darker red on hover */
+            background-color: #e63939; 
         }
         p {
             margin-top: 10px;
         }
-        /* Cookie consent styles */
+
         .cookie-consent {
             position: fixed;
             bottom: 0;
@@ -60,7 +60,7 @@
             color: white;
             text-align: center;
             padding: 15px;
-            display: none; /* Initially hidden */
+            display: none; 
             z-index: 1000;
         }
         .cookie-consent button {
@@ -83,7 +83,7 @@
     </div>
 
     <script>
-        // Prevent context menu
+
         document.addEventListener('DOMContentLoaded', function() {
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
@@ -92,35 +92,34 @@
         function banUser(durationInSeconds = 3600) {
             document.cookie = `banned=true; max-age=${durationInSeconds}; path=/; SameSite=None; Secure`;
             alert(`get banned 😭 vro, your banned for ${durationInSeconds / 60} mins.`);
-            window.location.href = 'banned.html'; // Redirect immediately
+            window.location.href = 'banned.html';
         }
         
         function checkBanned() {
             const bannedKey = getCookie('banned');
             if (bannedKey) {
-                window.location.href = 'banned.html'; // Redirect to the banned page
+                window.location.href = 'banned.html'; 
             }
         }
-        // Check for validKey cookie on page load
+
         function checkValidKey() {
             const validKey = getCookie('validKey');
 
             if (validKey) {
-                window.location.href = 'menu.html'; // Redirect to menu if valid key exists
+                window.location.href = 'menu.html'; 
             }
         }
 
-        // Check if the cookie consent has already been accepted
         function checkCookieConsent() {
             const consent = getCookie('cookieConsent');
             if (!consent) {
-                document.getElementById('cookieConsent').style.display = 'block'; // Show consent message
+                document.getElementById('cookieConsent').style.display = 'block';
             }
         }
 
         function acceptCookies() {
-            document.cookie = "cookieConsent=true; path=/"; // Set cookie consent
-            document.getElementById('cookieConsent').style.display = 'none'; // Hide consent message
+            document.cookie = "cookieConsent=true; path=/"; 
+            document.getElementById('cookieConsent').style.display = 'none';
         }
 
         function getCookie(name) {
@@ -129,7 +128,7 @@
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
 
-        // Predefined keys
+
         const keys = {
             'Y293Ym95c2FyZXRyYXNo': 'key1', 
             'c3VwZXJzaWdtYTQ3': 'key2', 
@@ -142,20 +141,20 @@
             'U09VUkdSQVBFUw==': 'key8',
         };
 
-        const specialKey = 'lockoutgoboom'; // Updated special bypass key
-        let incorrectAttempts = 0; // Track incorrect attempts
-        let lockout = false; // Lockout status
+        const specialKey = 'lockoutgoboom';
+        let incorrectAttempts = 0; 
+        let lockout = false; 
 
         document.getElementById('checkKey').addEventListener('click', function() {
             const resultElement = document.getElementById('result');
-            const inputKey = document.getElementById('keyInput').value.trim(); // Trim whitespace
+            const inputKey = document.getElementById('keyInput').value.trim(); 
 
             if (inputKey == specialKey) {
-                incorrectAttempts = 0; // Reset incorrect attempts
-                lockout = false; // Disable lockout
+                incorrectAttempts = 0; 
+                lockout = false; 
                 resultElement.textContent = "Lockout disabled. You can continue.";
-                resultElement.style.color = "purple"; // Change color to indicate success
-                return; // Exit the function
+                resultElement.style.color = "purple"; 
+                return; 
             }
 
             if (lockout) {
@@ -165,12 +164,12 @@
 
             if (inputKey == "weinermuncher58") {
                 resultElement.textContent = "no more key lol";
-                resultElement.style.color = "red"; // Change color to indicate success
+                resultElement.style.color = "red"; 
                 banUser(100000000000000000000000000000000000000);
-                return; // Exit the function
+                return; 
             }
-            // Decode input key from Base64
-            const decodedKey = btoa(inputKey); // Encode to Base64 to match keys
+   
+            const decodedKey = btoa(inputKey);
             if (keys[decodedKey]) {
                 resultElement.textContent = "Key is valid! Redirecting...";
                 resultElement.style.color = "green";
@@ -178,31 +177,31 @@
                 document.cookie = `validKey=true; max-age=3600; path=/; SameSite=None; Secure`;
 
                 setTimeout(() => {
-                    window.location.href = "menu.html"; // Redirect to games page
-                }, 2000); // Redirect after 2 seconds
+                    window.location.href = "menu.html"; 
+                }, 2000); 
             } else {
                 incorrectAttempts++;
                 resultElement.textContent = "Invalid key. Please try again.";
                 resultElement.style.color = "red";
 
-                // Set timeout based on incorrect attempts
+
                 if (incorrectAttempts >= 5) {
                     lockout = true;
                     resultElement.textContent = "Too many incorrect attempts. Please wait 3 minutes.";
                     setTimeout(() => {
-                        lockout = false; // Reset lockout after 3 minutes
-                        incorrectAttempts = 0; // Reset attempts
-                        resultElement.textContent = ""; // Clear message
-                    }, 180000); // 3 minutes
+                        lockout = false; 
+                        incorrectAttempts = 0; 
+                        resultElement.textContent = ""; 
+                    }, 180000); 
                 } else {
                     setTimeout(() => {
-                        resultElement.textContent = ""; // Clear message after 3 seconds
-                    }, 3000); // 3 seconds
+                        resultElement.textContent = ""; 
+                    }, 3000); 
                 }
             }
         });
 
-        // Check for valid key and cookie consent on page load
+
         window.onload = function() {
             checkValidKey();
             checkCookieConsent();
