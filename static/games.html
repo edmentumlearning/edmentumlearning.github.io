@@ -21,19 +21,19 @@
             align-items: center;
             justify-content: flex-start;
             height: 100vh;
-            background-color: #1a1a1a; /* Default background */
-            color: #ff4d4d; /* Default text color */
+            background-color: #1a1a1a; 
+            color: #ff4d4d; 
             font-family: Arial, sans-serif;
             margin: 0;
             text-align: center;
         }
         body.light {
-            background-color: #f9f9f9; /* Light background */
-            color: #333; /* Dark text */
+            background-color: #f9f9f9;
+            color: #333; 
         }
         body.chromakopia {
-            background-color: #00843d; /* Chromakopia background */
-            color: #FFFFFF; /* Chromakopia text color */
+            background-color: #00843d; 
+            color: #FFFFFF; 
         }
         .nav-buttons {
             position: absolute;
@@ -41,7 +41,7 @@
             right: 10px;
         }
         .nav-button, .game-button {
-            background-color: #ff4d4d; /* Default button color */
+            background-color: #ff4d4d;
             border: none;
             color: white;
             cursor: pointer;
@@ -52,19 +52,19 @@
             transition: background-color 0.3s;
         }
         .nav-button:hover, .game-button:hover {
-            background-color: #e63939; /* Hover color */
+            background-color: #e63939; 
         }
         body.light .nav-button, body.light .game-button {
-            background-color: #333; /* Dark button color for light theme */
+            background-color: #333;
         }
         body.chromakopia .nav-button, body.chromakopia .game-button {
-            background-color: #000000; /* Black button for Chromakopia */
-            color: #FFFFFF; /* White text for Chromakopia buttons */
+            background-color: #000000; 
+            color: #FFFFFF; 
         }
     </style>
     <script>
         function banUser(durationInSeconds = 3600) {
-            document.cookie = `banned=true; max-age=${durationInSeconds}; path=/`; // Set the banned cookie
+            document.cookie = `banned=true; max-age=${durationInSeconds}; path=/`;
             alert(`get banned 😭 vro, your banned for ${durationInSeconds / 60} mins.`);
             window.location.href = 'banned.html';
         }
@@ -75,27 +75,27 @@
             }
         }
         function encodeUrl(url) {
-            return btoa(url); // Base64 encoding
+            return btoa(url); 
         }
         
         function navigateToGame(url) {
             const encodedUrl = encodeUrl(url);
             location.href = `game_pagewb.html?gameUrl=${encodedUrl}`;
         }
-        // Function to Base64 encode the game folder and file names
+
         function encodeGameData(folder, game) {
         const gameData = JSON.stringify({ folder: folder, game: game });
-        return btoa(gameData); // Base64 encode the string
+        return btoa(gameData); 
     }
 
     function navigateToGamePage(folder, game) {
         const encodedGameData = encodeGameData(folder, game);
-        location.href = `game_page.html?data=${encodedGameData}`; // Pass the encoded data in the URL
+        location.href = `game_page.html?data=${encodedGameData}`; 
     }    
         function checkCookie() {
             const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
             if (!cookieValue) {
-                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+                window.location.href = 'index.html'; 
             }
         }
 
@@ -108,13 +108,13 @@
         function applyTheme() {
             const selectedStyle = getCookie('selectedStyle');
             if (selectedStyle) {
-                document.body.className = selectedStyle; // Apply the style class
+                document.body.className = selectedStyle; 
             }
         }
 
         window.onload = function() {
             checkCookie();
-            applyTheme(); // Apply theme on page load
+            applyTheme();
         };
     </script>
 </head>
