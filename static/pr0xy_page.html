@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proxy Page</title>
+    <title>proxy page</title>
     <script src="index.js" defer></script>
     <script src="uv-sw.js" defer></script>
     <script src="uv.js" defer></script>
@@ -97,7 +97,7 @@
     </style>
     <script>
         function banUser(durationInSeconds = 3600) {
-            document.cookie = `banned=true; max-age=${durationInSeconds}; path=/`; // Set the banned cookie
+            document.cookie = `banned=true; max-age=${durationInSeconds}; path=/`; 
             alert(`get banned 😭 vro, your banned for ${durationInSeconds / 60} mins.`);
             window.location.href = 'banned.html';
         }
@@ -131,16 +131,16 @@
             const urlParams = new URLSearchParams(window.location.search);
             const encodedUrl = urlParams.get('url');
             if (encodedUrl) {
-                const decodedUrl = atob(encodedUrl); // Decode the URL
+                const decodedUrl = atob(encodedUrl); 
                 const iframe = document.getElementById('proxyFrame');
-                iframe.src = decodedUrl; // Set the iframe source to the decoded URL
+                iframe.src = decodedUrl;
             }
         }
 
         window.onload = function() {
             checkCookie();
             applyTheme(); 
-            getProxyUrl(); // Get the proxy URL on page load
+            getProxyUrl(); 
         };
     </script>
 </head>
@@ -149,7 +149,7 @@
         <button class="nav-button default" onclick="location.href='pr0xies.html'">Back</button>
     </div>
 
-    <h1>Proxy Page</h1>
+    <h1>proxy page</h1>
 
     <div class="proxy-container">
         <iframe id="proxyFrame" style="width: 100%; height: 100%; border: none;"></iframe>
