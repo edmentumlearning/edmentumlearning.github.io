@@ -10,20 +10,20 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            height: 100vh; /* Full height */
-            background-color: #1a1a1a; /* Dark gray background */
-            color: #ff4d4d; /* Red text */
+            height: 100vh;
+            background-color: #1a1a1a; 
+            color: #ff4d4d; 
             font-family: Arial, sans-serif;
             margin: 0;
-            text-align: center; /* Center text */
+            text-align: center;
         }
         body.light {
-            background-color: #f9f9f9; /* Light background */
-            color: #333; /* Dark text */
+            background-color: #f9f9f9; 
+            color: #333;
         }
         body.chromakopia {
-            background-color: #00843d; /* Chromakopia background */
-            color: #FFFFFF; /* Chromakopia text color */
+            background-color: #00843d;
+            color: #FFFFFF; 
         }
         .nav-buttons {
             position: absolute;
@@ -37,30 +37,30 @@
             margin-left: 10px;
             padding: 10px;
             border-radius: 5px;
-            transition: background-color 0.3s; /* Transition for hover effect */
+            transition: background-color 0.3s;
         }
         .nav-button.default {
-            background-color: #ff4d4d; /* Red button */
+            background-color: #ff4d4d; 
             color: white;
         }
         .nav-button.default:hover {
-            background-color: #e63939; /* Slightly darker red on hover */
+            background-color: #e63939; 
         }
         body.light .nav-button.default {
-            background-color: #333; /* Dark button for light theme */
-            color: white; /* White text */
+            background-color: #333; 
+            color: white; 
         }
         body.chromakopia .nav-button.default {
-            background-color: #000000; /* Black button for Chromakopia */
-            color: #FFFFFF; /* White text */
+            background-color: #000000; 
+            color: #FFFFFF; 
         }
         .game-container {
-            width: 80%; /* Wider box */
-            height: 80%; /* Taller box */
-            border: 2px solid #ff4d4d; /* Red border */
+            width: 80%; 
+            height: 80%; 
+            border: 2px solid #ff4d4d; 
             border-radius: 10px;
             overflow: hidden;
-            position: relative; /* Position for fullscreen button */
+            position: relative; 
         }
         .fullscreen-button {
             position: absolute;
@@ -70,24 +70,24 @@
             border-radius: 5px;
             cursor: pointer;
             padding: 5px 10px;
-            background-color: #ff4d4d; /* Red button */
+            background-color: #ff4d4d; 
             color: white;
         }
         .fullscreen-button:hover {
-            background-color: #e63939; /* Slightly darker red on hover */
+            background-color: #e63939; 
         }
         body.light .fullscreen-button {
-            background-color: #333; /* Dark background for light mode */
-            color: white; /* White text */
+            background-color: #333; 
+            color: white;
         }
         body.chromakopia .fullscreen-button {
-            background-color: #000000; /* Black button for Chromakopia */
-            color: #FFFFFF; /* White text */
+            background-color: #000000; 
+            color: #FFFFFF;
         }
         iframe {
             width: 100%;
             height: 100%;
-            border: none; /* No border for the iframe */
+            border: none; 
         }
     </style>
     <script>
@@ -98,7 +98,7 @@
         });
 
         function banUser(durationInSeconds = 3600) {
-            document.cookie = `banned=true; max-age=${durationInSeconds}; path=/`; // Set the banned cookie
+            document.cookie = `banned=true; max-age=${durationInSeconds}; path=/`;
             alert(`get banned 😭 vro, your banned for ${durationInSeconds / 60} mins.`);
             window.location.href = 'banned.html';
         }
@@ -111,7 +111,7 @@
         function checkCookie() {
             const cookieValue = document.cookie.split('; ').find(row => row.startsWith('validKey='));
             if (!cookieValue) {
-                window.location.href = 'index.html'; // Redirect if cookie doesn't exist
+                window.location.href = 'index.html'; 
             }
         }
 
@@ -124,32 +124,31 @@
         function applyTheme() {
             const selectedStyle = getCookie('selectedStyle');
             if (selectedStyle) {
-                document.body.className = selectedStyle; // Apply the style class
+                document.body.className = selectedStyle;
             }
         }
 
         window.onload = function() {
             checkCookie();
-            applyTheme(); // Apply theme on page load
+            applyTheme(); 
 
-            // Load the game based on the query parameters
             const params = new URLSearchParams(window.location.search);
-            const encodedGameUrl = params.get('gameUrl'); // Get the encoded game URL
-            const gameUrl = atob(encodedGameUrl); // Decode the URL
+            const encodedGameUrl = params.get('gameUrl');
+            const gameUrl = atob(encodedGameUrl); 
 
             const iframe = document.getElementById('game-iframe');
-            iframe.src = gameUrl; // Set the iframe source to the decoded web game URL
+            iframe.src = gameUrl; 
         };
 
         function toggleFullScreen() {
             const elem = document.getElementById('game-container');
             if (elem.requestFullscreen) {
                 elem.requestFullscreen();
-            } else if (elem.mozRequestFullScreen) { // Firefox
+            } else if (elem.mozRequestFullScreen) {
                 elem.mozRequestFullScreen();
-            } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            } else if (elem.webkitRequestFullscreen) { 
                 elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { // IE/Edge
+            } else if (elem.msRequestFullscreen) { 
                 elem.msRequestFullscreen();
             }
         }
