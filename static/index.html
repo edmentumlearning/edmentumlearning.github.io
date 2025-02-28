@@ -43,6 +43,7 @@
             color: white; 
             cursor: pointer;
             transition: background-color 0.3s; 
+            margin: 5px;
         }
         button:hover {
             background-color: #e63939; 
@@ -72,7 +73,10 @@
     <h1>sigma key system</h1>
     <label for="keyInput">enter your key:</label>
     <input type="text" id="keyInput" placeholder="Enter key">
-    <button id="checkKey">check key</button>
+    <div>
+        <button id="checkKey">check key</button>
+        <button id="cloakButton">cloak</button>
+    </div>
     
     <p id="result"></p>
 
@@ -83,18 +87,18 @@
     </div>
 
     <script>
-
         document.addEventListener('DOMContentLoaded', function() {
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
             });
         });
+
         function banUser(durationInSeconds = 3600) {
             document.cookie = `banned=true; max-age=${durationInSeconds}; path=/; SameSite=None; Secure`;
             alert(`get banned 😭 vro, your banned for ${durationInSeconds / 60} mins.`);
             window.location.href = 'banned.html';
         }
-        
+
         function checkBanned() {
             const bannedKey = getCookie('banned');
             if (bannedKey) {
@@ -127,7 +131,6 @@
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
-
 
         const keys = {
             'Y293Ym95c2FyZXRyYXNo': 'key1', 
@@ -184,7 +187,6 @@
                 resultElement.textContent = "Invalid key. Please try again.";
                 resultElement.style.color = "red";
 
-
                 if (incorrectAttempts >= 5) {
                     lockout = true;
                     resultElement.textContent = "Too many incorrect attempts. Please wait 3 minutes.";
@@ -201,6 +203,17 @@
             }
         });
 
+        document.getElementById('cloakButton').addEventListener('click', function() {
+            var win = window.open('', '_blank', 'width=' + window.innerWidth + ',height=' + window.innerHeight + ',resizable=yes');
+            var url = "https://sigmavro2.github.io/";
+            var iframe = win.document.createElement('iframe');
+            iframe.style.width = "100vw";
+            iframe.style.height = "100vh";
+            iframe.style.border = "none"; 
+            iframe.src = url;
+            win.document.body.style.margin = "0";
+            win.document.body.appendChild(iframe);
+        });
 
         window.onload = function() {
             checkValidKey();
