@@ -179,11 +179,8 @@
             if (keys[decodedKey]) {
                 resultElement.textContent = "Key is valid! Redirecting...";
                 resultElement.style.color = "green";
-
-                const decodedKey = atob(inputKey); 
-                const encodedKey = encodeURIComponent(decodedKey); 
                 
-                document.cookie = `validKey=${encodedKey}; max-age=3600; path=/; SameSite=None; Secure`;
+                document.cookie = `validKey=${inputKey}; max-age=3600; path=/; SameSite=None; Secure`;
 
                 setTimeout(() => {
                     window.location.href = "menu.html"; 
