@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Cookies</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #1a1a1a; 
+            color: #ff4d4d; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center; 
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #ff4d4d; 
+            border: none;
+            border-radius: 5px;
+            color: white; 
+            cursor: pointer;
+            transition: background-color 0.3s; 
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #e63939; 
+        }
+        p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>clear all data and unagree to tos</h1>
+    <p>click the button below to do so</p>
+    <button onclick="clearCookies()">clear</button>
+    <p id="result"></p>
+
+    <script>
+        function clearCookies() {
+            document.cookie.split(";").forEach(function(cookie) {
+                document.cookie = cookie
+                    .replace(/^ +/, "")
+                    .replace(/=.*/, "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=None; Secure");
+            });
+
+            document.getElementById("result").textContent = "everything has been cleared.";
+            document.getElementById("result").style.color = "green";
+
+            setTimeout(() => {
+                window.location
