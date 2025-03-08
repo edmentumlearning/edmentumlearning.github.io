@@ -183,7 +183,7 @@
    
             const decodedKey = btoa(inputKey);
             if (keys[decodedKey]) {
-                resultElement.textContent = "Key is valid! Redirecting...";
+                resultElement.textContent = "key worky worky";
                 resultElement.style.color = "green";
                 
                 document.cookie = `validKey=${inputKey}; max-age=3600; path=/; SameSite=None; Secure`;
@@ -193,12 +193,12 @@
                 }, 2000); 
             } else {
                 incorrectAttempts++;
-                resultElement.textContent = "Invalid key. Please try again.";
+                resultElement.textContent = "invalid key. please try again.";
                 resultElement.style.color = "red";
 
                 if (incorrectAttempts >= 5) {
                     lockout = true;
-                    resultElement.textContent = "Too many incorrect attempts. Please wait 3 minutes.";
+                    resultElement.textContent = "too many incorrect attempts. wait 3 minutes!";
                     setTimeout(() => {
                         lockout = false; 
                         incorrectAttempts = 0; 
@@ -214,7 +214,7 @@
 
         document.getElementById('cloakButton').addEventListener('click', function() {
             var win = window.open('', '_blank', 'width=' + window.innerWidth + ',height=' + window.innerHeight + ',resizable=yes');
-            var url = "https://sigmavro2.github.io/";
+            var url = "https://skibidivro.github.io/";
             var iframe = win.document.createElement('iframe');
             iframe.style.width = "100vw";
             iframe.style.height = "100vh";
