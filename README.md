@@ -3,3 +3,7 @@ hi im not responsible for anything on this website!!! this was intended for myse
 
 to github:
 pls dont ban!!!!
+
+
+to my school admins:
+can you stop blocking ts pmo sm fr
